@@ -1,0 +1,76 @@
+[
+	{
+		"caption": "Edit",
+		"mnemonic": "E",
+		"id": "edit",
+		"children":
+		[
+			{ "caption": "-", "id": "permute" },
+			{
+				"caption":"CSS Format",
+				"children":[
+					{ "command": "compact_expand_css", "args": { "action": "compact" }, "caption":"Compact"},
+					{ "command": "compact_expand_css", "args": { "action": "expand" }, "caption":"Expand"},
+					{ "command": "compact_expand_css", "args": { "action": "compress" }, "caption":"Compress"}
+				]
+			}
+		]
+	},
+	{
+
+		"caption": "Preferences",
+		"mnemonic": "n",
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Package Settings",
+				"mnemonic": "P",
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"caption": "CSS Format",
+						"children":
+						[
+							{
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/CSS Format/Default (Windows).sublime-keymap",
+									"platform": "Windows"
+								},
+								"caption": "Key Bindings – Default"
+							},
+							{
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/CSS Format/Default (OSX).sublime-keymap",
+									"platform": "OSX"
+								},
+								"caption": "Key Bindings – Default"
+							},
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/User/Default (Windows).sublime-keymap",
+                                    "platform": "Windows"
+                                },
+                                "caption": "Key Bindings – User"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/User/Default (OSX).sublime-keymap",
+                                    "platform": "OSX"
+                                },
+                                "caption": "Key Bindings – User"
+                            },
+                            { "caption": "-" }
+						]
+					}
+				]
+			}
+		]
+
+	}
+]
