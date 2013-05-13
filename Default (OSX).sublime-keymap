@@ -1,5 +1,8 @@
 [
-	{ "keys": ["ctrl+super+["],		"command": "css_format", "args": { "action": "compact" } },
-	{ "keys": ["ctrl+super+]"],		"command": "css_format", "args": { "action": "expand" } },
-	{ "keys": ["ctrl+super+\\"],	"command": "css_format", "args": { "action": "compress" } }
+	{ "keys": ["ctrl+alt+["], "command": "css_format", "args": { "action": "compact" } },
+	{ "keys": ["ctrl+alt+]"], "command": "css_format", "args": { "action": "expand" } },
+	{ "keys": ["ctrl+alt+\\"], "command": "css_format", "args": { "action": "compress" } },
+	{ "keys": ["ctrl+super+["], "command": "css_format", "args": { "action": "compact" } },
+	{ "keys": ["ctrl+super+]"], "command": "css_format", "args": { "action": "expand" } },
+	{ "keys": ["ctrl+super+\\"], "command": "css_format", "args": { "action": "compress" } }
 ]
