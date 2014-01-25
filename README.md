@@ -18,15 +18,15 @@ CSS Format is a CSS formatting plugin for Sublime Text 2, you can convert CSS co
 * Expand format:
 
         body {
-            background-color:#fff;
-            color:#333;
-            font-size:12px;
+            background-color: #fff;
+            color: #333;
+            font-size: 12px;
         }
         a {
-            color:#06f;
+            color: #06f;
         }
         a:hover {
-            color:#09c;
+            color: #09c;
         }
 
 * Compress:
