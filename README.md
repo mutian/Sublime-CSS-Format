@@ -37,7 +37,7 @@ CSS Format is a CSS formatting plugin for Sublime Text 2, you can convert CSS co
 Installation
 ------------
 
-**OPTION 1 - with Package Control *(recommended)* **
+**OPTION 1 - with Package Control (recommended)**
 
 The easiest way to install this package is through Package Control.
 
