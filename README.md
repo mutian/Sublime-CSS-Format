@@ -11,7 +11,15 @@ CSS Format is a CSS formatting plugin for Sublime Text 2, you can convert CSS co
 Installing
 ----------
 
-**OPTION 1 - With Git**
+**OPTION 1 - With Package Control**
+
+With [Package Control](https://sublime.wbond.net/installation):
+
+ 1. Open command pallette (Ctrl + Shift + p)
+ 2. Enter "Install Package"
+ 3. Search for "CSS Formatting" and select it.
+
+**OPTION 2 - With Git**
 
 Clone the repository in your Sublime Text "Packages" directory:
 
@@ -27,7 +35,7 @@ You can find your 'Packages' inside the following directories:
     `~/.Sublime Text 2/Packages/`
 
 
-**OPTION 2 - Without Git**
+**OPTION 3 - Without Git**
 
 Download the latest source zip from [Github](https://github.com/mutian/CSS-Format) and extract it into a new folder named `Jade Build` in your Sublime Text "Packages" folder.
 
