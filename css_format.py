@@ -43,6 +43,13 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		code = re.sub(r"\s*([\{\}:;,])\s*", r"\1", code)		# remove \s before and after characters {}:;,
 		code = re.sub(r",[\s\.\#\d]*\{", "{", code)				# remove invalid selector
 		code = re.sub(r";\s*;", ";", code)						# remove superfluous ;
+
+		if action != 'compress':
+			code = re.sub(r",(\S)", r", \1", code)							# add space after ,
+			code = re.sub(r"([A-Za-z-]):([^;\{]+[;\}])", r"\1: \2", code)	# add space after properties' :
+			code = re.sub(r"(http[s]?:) \/\/", r"\1//", code)				# fix space after http[s]:
+			code = re.sub(r"\s*!important", r" !important", code)			# add space before !important
+
 		code = actions[action](code)
 		code = re.sub(r"^\s*(\S+(\s+\S+)*)\s*$", r"\1", code)	# remove superfluous \s
 		return code
@@ -51,10 +58,12 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		#code = re.sub(r"([^\s])([,\}])([^\n])", r"\1\2\n\3", code)
 		#code = re.sub(r"([^\s]),([^\s])", r"\1, \2", code)		# todo: add \n after selectors' ,
 
+		code = re.sub(r"(\S)\{(\S)", r"\1 { \2", code)			# add space and after {
+		code = re.sub(r"(\S);([^\}])", r"\1; \2", code)			# add space after ;
+		code = re.sub(r"(\S)\}", r"\1 }", code)					# add space before }
 		code = re.sub(r"\}", r"}\n", code)						# add \n after }
-		#code = re.sub(r"\{([^\{\}])*\}", compact_rules_brace_block, code)	# todo:
-		code = re.sub(r"\s*(!important)", r" \1", code)			# add space before !important
 		code = re.sub(r"(@import[^;]+;)\s*", r"\1\n", code)		# add \n after @import
+		#code = re.sub(r"\{([^\{\}])*\}", compact_rules_brace_block, code)	# todo:
 		return code
 
 	# def compact_rules_brace_block(matches):
@@ -66,17 +75,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		#code = re.sub(r"(\w),([^\{]+\{)", r"\1,\n\2", code)	# todo: add \n after selectors' ,
 		#code = re.sub(r"(\{[^\{]+),\s+([^\}]+\})", r"\1,\2", code)
 
-		code = re.sub(r"(\S)\{(\S)", r"\1 {\n\t\2", code)				# add \n\t after {
-		code = re.sub(r"([A-Za-z-]):([^;\{]+[;\}])", r"\1: \2", code)	# add space after properties' :
-		code = re.sub(r"(http[s]?:) \/\/", r"\1//", code)				# fix space after http[s]:
+		code = re.sub(r"(\S)\{(\S)", r"\1 {\n\t\2", code)				# add space before { , and add \n\t after {
 		code = re.sub(r"(\S);([^\}])", r"\1;\n\t\2", code)				# add \n\t after ;
-		code = re.sub(r"\s*!important", r" !important", code)			# add space before !important
 		code = re.sub(r"([^\}])\}", r"\1\n}", code)						# add \n before }
 		code = re.sub(r"\}", r"}\n", code)								# add \n after }
 		code = re.sub(r"(@import[^;]+;)\s*", r"\1\n", code)				# remove \t after @import
 		return code
 	
 	def compress_rules(self, code):
-		code = re.sub(r"\/\*(.|\n)*?\*\/", "", code)	# remove comments
-		code = re.sub(r"\s*(!important)", r"\1", code)	# remove space before !important
+		code = re.sub(r"\/\*(.|\n)*?\*\/", "", code)		# remove comments
+		code = re.sub(r"\s*([\{\}:;,])\s*", r"\1", code)	# remove \s before and after characters {}:;, again
+		code = re.sub(r"\s*(!important)", r"\1", code)		# remove space before !important
 		return code
