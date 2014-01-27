@@ -1,79 +1,158 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Css-format : CSS Formatting for Sublime Text 2" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Css-format</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>CSS Format by mutian</title>
   </head>
 
   <body>
+    <div id="container">
+      <div class="inner">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/mutian/CSS-Format">View on GitHub</a>
-
-          <h1 id="project_title">Css-format</h1>
-          <h2 id="project_tagline">CSS Formatting for Sublime Text 2</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/mutian/CSS-Format/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/mutian/CSS-Format/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+        <header>
+          <h1>CSS Format</h1>
+          <h2>CSS Formater for Sublime Text 2</h2>
         </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/mutian/CSS-Format/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/mutian/CSS-Format/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/mutian/CSS-Format" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <hr>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+        <section id="main_content">
+          <h1>
+<a name="css-formatting-for-sublime-text-2" class="anchor" href="#css-formatting-for-sublime-text-2"><span class="octicon octicon-link"></span></a>CSS Formatting for Sublime Text 2</h1>
+
+<h2>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
+
+<p>CSS Format is a CSS formatting plugin for Sublime Text 2, you can convert CSS code to Compact、Expand format, or compress CSS. CSS Format is just only a formatter, do not supports grammar check and auto correct feature.</p>
+
+<p><strong>Example:</strong></p>
+
+<ul>
+<li>
+<p>Compact format:</p>
+
+<pre><code>body { background-color: #fff; color: #333; font-size: 12px; }
+a { color: #06f; }
+a:hover { color: #09c; }
+</code></pre>
+</li>
+<li>
+<p>Expand format:</p>
+
+<pre><code>body {
+    background-color: #fff;
+    color: #333;
+    font-size: 12px;
+}
+a {
+    color: #06f;
+}
+a:hover {
+    color: #09c;
+}
+</code></pre>
+</li>
+<li>
+<p>Compress:</p>
+
+<pre><code>body{background-color:#fff;color:#333;font-size:12px;}a{color:#06f;}a:hover{color:#09c;}
+</code></pre>
+</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><strong>OPTION 1 - with Package Control (recommended)</strong></p>
+
+<p>The easiest way to install this package is through Package Control.</p>
+
+<ol>
+<li><p>Install <a href="https://sublime.wbond.net/installation">Package Control</a>, follow instructions on the website.</p></li>
+<li><p>Open command panel: <code>Ctrl+Shift+P</code> (Linux/Windows) or <code>Cmd+Shift+P</code> (OS X) and select <strong>Package Control: Install Package</strong>.</p></li>
+<li><p>When packages list appears, type <code>CSS Format</code> and select it.</p></li>
+</ol><p><strong>OPTION 2 - with Git</strong></p>
+
+<p>Clone the repository in your Sublime Text "Packages" directory:</p>
+
+<pre><code>git clone git://https://github.com/mutian/CSS-Format.git Jade-Build
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>You can find your "Packages" inside the following directories:</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<ul>
+<li><p>OS X:
+<code>~/Library/Application Support/Sublime Text 2/Packages/</code></p></li>
+<li><p>Windows:
+<code>%APPDATA%/Sublime Text 2/Packages/</code></p></li>
+<li><p>Linux:
+<code>~/.Sublime Text 2/Packages/</code></p></li>
+</ul><p><strong>OPTION 3 - without Git</strong></p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Download the latest source zip from <a href="https://github.com/mutian/CSS-Format">Github</a> and extract it into a new folder named <code>Jade Build</code> in your Sublime Text "Packages" folder.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Keyboard shortcuts:</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<ul>
+<li>
+<p>Windows &amp; Linux:</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li>
+<code>Ctrl+Alt+[</code> : Convert to compact format</li>
+<li>
+<code>Ctrl+Alt+]</code> : Convert to expand format</li>
+<li>
+<code>Ctrl+Alt+\</code> : Compress CSS</li>
+</ul>
+</li>
+<li>
+<p>Mac:</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<ul>
+<li>
+<code>Ctrl+Cmd+[</code> : Convert to compact format</li>
+<li>
+<code>Ctrl+Cmd+]</code> : Convert to expand format</li>
+<li>
+<code>Ctrl+Cmd+\</code> : Compress CSS</li>
+</ul>
+</li>
+</ul><h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+<p>Created by <strong>Mutian</strong> (<a href="http://mutian.info/">http://mutian.info</a>).</p>
+
+<p>For more info, you can send email to me: mutian(a)me.com!</p>
+
+<h2>
+<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
+
+<p>Thanks to the <strong>RIA Team</strong> of <a href="http://weibo.com/">Weibo.com</a> .</p>
+        </section>
+
+        <footer>
+          CSS Format is maintained by <a href="https://github.com/mutian">mutian</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Css-format maintained by <a href="https://github.com/mutian">mutian</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
   </body>
 </html>
