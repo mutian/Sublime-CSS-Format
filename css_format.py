@@ -62,10 +62,13 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		#code = re.sub(r"([^\s])([,\}])([^\n])", r"\1\2\n\3", code)
 		#code = re.sub(r"([^\s]),([^\s])", r"\1, \2", code)		# todo: add \n after selectors' ,
 
-		code = re.sub(r"(\S)\{(\S)", r"\1 { \2", code)			# add space and after {
-		code = re.sub(r"(\S);([^\}])", r"\1; \2", code)			# add space after ;
-		code = re.sub(r"(\S)\}", r"\1 }", code)					# add space before }
-		code = re.sub(r"\}", r"}\n", code)						# add \n after }
+		code = re.sub(r"(\S)\{(\S)", r"\1 { \2", code)					# add space and after {
+		code = re.sub(r"((@media|@[\w-]*keyframes)[^\{]+\{)\s*", r"\1\n", code)	# add \n after @media {
+		code = re.sub(r"(\S);([^\}])", r"\1; \2", code)					# add space after ;
+		code = re.sub(r"\;\s*(\/\*[^\n]*\*\/)\s*", r"; \1\n\t", code)	# fix comment after ;
+		code = re.sub(r"(\/\*[^\n]*\*\/)\s+\}", r"\1}", code)			# remove \n\t between comment and }
+		code = re.sub(r"(\S)\}", r"\1 }", code)							# add space before }
+		code = re.sub(r"\}", r"}\n", code)								# add \n after }
 		#code = re.sub(r"\{([^\{\}])*\}", compact_rules_brace_block, code)	# todo:
 		return code
 
@@ -79,6 +82,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		#code = re.sub(r"(\{[^\{]+),\s+([^\}]+\})", r"\1,\2", code)
 
 		code = re.sub(r"(\S)\{(\S)", r"\1 {\n\t\2", code)				# add space before { , and add \n\t after {
+		code = re.sub(r"((@media|@[\w-]*keyframes)[^\{]+\{)\s*", r"\1\n", code)	# remove \t after @media {
 		code = re.sub(r"(\S);([^\}])", r"\1;\n\t\2", code)				# add \n\t after ;
 		code = re.sub(r"\;\s*(\/\*[^\n]*\*\/)\s*", r"; \1\n\t", code)	# fix comment after ;
 		code = re.sub(r"([^\}])\s*\}", r"\1\n}", code)					# add \n before }
