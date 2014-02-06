@@ -1,0 +1,5 @@
+[
+    { "caption": "Format: CSS: Expand", "command": "css_format" , "args": { "action": "expand" } },
+    { "caption": "Format: CSS: Compact", "command": "css_format" , "args": { "action": "compact" } },
+    { "caption": "Format: CSS: Compress", "command": "css_format", "args": { "action": "compress" } }
+]
