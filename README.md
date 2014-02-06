@@ -74,19 +74,23 @@ Download the latest source zip from [Github](https://github.com/mutian/CSS-Forma
 Usage
 -----
 
-Keyboard shortcuts:
+Select the code, or place cursor in the document, and execute commands in one of the following ways:
 
-* Windows & Linux:
+* Use "Edit" menu: **Edit &gt; CSS Format**.
+
+* Keyboard shortcuts:
 
     * `Ctrl+Alt+[` : Convert to compact format
     * `Ctrl+Alt+]` : Convert to expand format
     * `Ctrl+Alt+\` : Compress CSS
 
-* Mac:
+    Mac user can also use the following keyboard shortcuts:
 
     * `Ctrl+Cmd+[` : Convert to compact format
     * `Ctrl+Cmd+]` : Convert to expand format
     * `Ctrl+Cmd+\` : Compress CSS
+
+* Use command panel: Open command panel: `Ctrl+Shift+P` (Linux/Windows) or `Cmd+Shift+P` (OS X) and select **CSS Format: XXX**.
 
 
 Author
