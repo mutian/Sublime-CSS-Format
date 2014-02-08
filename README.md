@@ -82,11 +82,11 @@ Select the code, or place cursor in the document, and execute commands in one of
 
 * Command Panel: Open command panel: `Ctrl+Shift+P` (Linux/Windows) or `Cmd+Shift+P` (OS X) and select **CSS Format: XXX**.
 
-* Keyboard Shortcuts:
 
-    * `Ctrl+Alt+[` : Convert to compact format
-    * `Ctrl+Alt+]` : Convert to expand format
-    * `Ctrl+Alt+\` : Compress CSS
+Shortcuts
+---------
+
+By default CSS Format provides no keyboard shortcuts to avoid conflicts, but you can view the included `Example.sublime-keymaps` file to get an idea how to set up your own.
 
 
 Author

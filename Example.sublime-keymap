@@ -1,0 +1,28 @@
+[
+	// Convert to compact format
+	{
+		"keys": ["ctrl+alt+["],
+		"command": "css_format",
+		"args": {
+			"action": "compact"
+		}
+	},
+
+	// Convert to expand format
+	{
+		"keys": ["ctrl+alt+]"],
+		"command": "css_format",
+		"args": {
+			"action": "expand"
+		}
+	},
+
+	// Compress
+	{
+		"keys": ["ctrl+alt+\\"],
+		"command": "css_format",
+		"args": {
+			"action": "compress"
+		}
+	}
+]
