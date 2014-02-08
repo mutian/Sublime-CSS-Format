@@ -1,4 +1,4 @@
-import sublime, sublime_plugin, re
+import sublime, sublime_plugin, re, os
 
 class CssFormatCommand(sublime_plugin.TextCommand):
 	def run(self, edit, action='compact'):
@@ -17,6 +17,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 	def format_selection(self, edit, action):
 		view = self.view
 		regions = []
+
 		for sel in view.sel():
 			region = sublime.Region(
 				view.line(min(sel.a, sel.b)).a,  # line start of first line
@@ -94,3 +95,17 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		code = re.sub(r"\s*([\{\}:;,])\s*", r"\1", code)	# remove \s before and after characters {}:;, again
 		code = re.sub(r"\s*(!important)", r"\1", code)		# remove space before !important
 		return code
+
+	def is_visible(self):
+		view = self.view
+		file_name = view.file_name()
+		syntax_path = view.settings().get('syntax')
+		css_family = ['css', 'sass', 'scss', 'less']
+		suffix = ""
+		syntax = ""
+		
+		if file_name != None: # file exists, pull syntax type from extension
+			suffix = os.path.splitext(file_name)[1][1:]
+		if syntax_path != None:
+			syntax = os.path.splitext(syntax_path)[0].split('/')[-1].lower()
+		return suffix in css_family or syntax in css_family

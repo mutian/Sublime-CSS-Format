@@ -1,5 +1,5 @@
-CSS Formatting for Sublime Text
-===================
+CSS Format for Sublime Text
+===========================
 
 
 Description
@@ -76,21 +76,17 @@ Usage
 
 Select the code, or place cursor in the document, and execute commands in one of the following ways:
 
-* Use "Edit" menu: **Edit &gt; CSS Format**.
+* Context Menu: **CSS Format**.
 
-* Keyboard shortcuts:
+* Edit Menu: **Edit &gt; CSS Format**.
+
+* Command Panel: Open command panel: `Ctrl+Shift+P` (Linux/Windows) or `Cmd+Shift+P` (OS X) and select **CSS Format: XXX**.
+
+* Keyboard Shortcuts:
 
     * `Ctrl+Alt+[` : Convert to compact format
     * `Ctrl+Alt+]` : Convert to expand format
     * `Ctrl+Alt+\` : Compress CSS
-
-    Mac user can also use the following keyboard shortcuts:
-
-    * `Ctrl+Cmd+[` : Convert to compact format
-    * `Ctrl+Cmd+]` : Convert to expand format
-    * `Ctrl+Cmd+\` : Compress CSS
-
-* Use command panel: Open command panel: `Ctrl+Shift+P` (Linux/Windows) or `Cmd+Shift+P` (OS X) and select **CSS Format: XXX**.
 
 
 Author
