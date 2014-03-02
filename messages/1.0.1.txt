@@ -1,8 +1,8 @@
 CSS Format 1.0.1 Changelog:
 
 New features
-- Wrap after commas in selector.
-- Indent for SASS/SCSS/LESS.
+ - Wrap after commas in selector.
+ - Indent for SASS/SCSS/LESS.
 
 Fixed
-- Indent in @media and @keyframes.
+ - Indent in @media and @keyframes.

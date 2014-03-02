@@ -1,19 +1,19 @@
 [
-	// Convert to compact format
+	// Convert to expanded format
 	{
 		"keys": ["ctrl+alt+["],
 		"command": "css_format",
 		"args": {
-			"action": "compact"
+			"action": "expand"
 		}
 	},
 
-	// Convert to expand format
+	// Convert to compact format
 	{
 		"keys": ["ctrl+alt+]"],
 		"command": "css_format",
 		"args": {
-			"action": "expand"
+			"action": "compact"
 		}
 	},
 

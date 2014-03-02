@@ -7,18 +7,18 @@
 		[
 			{
 				"command": "css_format",
+				"args": { "action": "expand"},
+				"caption": "Expanded"
+			},
+			{
+				"command": "css_format",
 				"args": { "action": "compact" },
 				"caption": "Compact"
 			},
 			{
 				"command": "css_format",
-				"args": { "action": "expand"},
-				"caption": "Expand"
-			},
-			{
-				"command": "css_format",
 				"args": { "action": "compress" },
-				"caption": "Compact"
+				"caption": "Compressed"
 			}
 		]
 	}
