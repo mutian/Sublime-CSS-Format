@@ -1,19 +1,19 @@
 #
-# Convert CSS/SASS/SCSS/LESS code to Compact, Expanded or Compressed format.
+# Convert CSS/SASS/SCSS/LESS code to Expanded, Compact or Compressed format.
 #   written by Mutian Wang <mutian.wang@gmail.com>
 #
 # usage:
 #   format_code(code, action)
 #
 
-"""Convert CSS/SASS/SCSS/LESS code to Compact, Expanded or Compressed format."""
+"""Convert CSS/SASS/SCSS/LESS code to Expanded, Compact or Compressed format."""
 
 import re
 
 def format_code(code, action='compact'):
 	actFuns = {
-		'compact'	: compact_rules,
 		'expand'	: expand_rules,
+		'compact'	: compact_rules,
 		'compress'	: compress_rules
 	}
 	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)		# remove \s before and after characters {}:;,
@@ -33,6 +33,15 @@ def format_code(code, action='compact'):
 	code = re.sub(r'^\s*(\S+(\s+\S+)*)\s*$', r'\1', code)			# trim
 	return code
 
+def expand_rules(code):
+	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)					# add space before { , and add \n after {
+	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)				# add \n after ;
+	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)		# fix comment after ;
+	code = re.sub(r'([^\}])\s*\}', r'\1\n}', code)					# add \n before }
+	code = re.sub(r'\}', r'}\n', code)								# add \n after }
+	code = indent_rules(code)										# add \t indent
+	return code
+
 def compact_rules(code):
 	code = re.sub(r'(\S)\{(\S)', r'\1 { \2', code)					# add space and after {
 	code = re.sub(r'((@media|@[\w-]*keyframes)[^\{]+\{)\s*', r'\1\n', code)	# add \n after @media {
@@ -42,15 +51,6 @@ def compact_rules(code):
 	code = re.sub(r'(\S)\}', r'\1 }', code)							# add space before }
 	code = re.sub(r'\}\s*', r'}\n', code)							# add \n after }
 	code = re.sub(r';\s*([^\};]+?\{)', r';\n\1', code)				# add \n before included selector
-	code = indent_rules(code)										# add \t indent
-	return code
-
-def expand_rules(code):
-	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)					# add space before { , and add \n after {
-	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)				# add \n after ;
-	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)		# fix comment after ;
-	code = re.sub(r'([^\}])\s*\}', r'\1\n}', code)					# add \n before }
-	code = re.sub(r'\}', r'}\n', code)								# add \n after }
 	code = indent_rules(code)										# add \t indent
 	return code
 

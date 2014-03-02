@@ -5,15 +5,9 @@ CSS Format for Sublime Text
 Description
 -----------
 
-CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS/SCSS/LESS code to Compact, Expanded or Compressed format. CSS Format is just only a formatter, do not supports grammar check and auto correct feature.
+CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS/SCSS/LESS code to Expanded, Compact or Compressed format. CSS Format is just only a formatter, do not supports grammar check and auto correct feature.
 
 **Example:**
-
-* Compact format:
-
-        body { background-color: #fff; color: #333; font-size: 12px; }
-        a { color: #06f; }
-        a:hover { color: #09c; }
 
 * Expanded format:
 
@@ -28,6 +22,12 @@ CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS
         a:hover {
             color: #09c;
         }
+
+* Compact format:
+
+        body { background-color: #fff; color: #333; font-size: 12px; }
+        a { color: #06f; }
+        a:hover { color: #09c; }
 
 * Compressed:
 
