@@ -80,7 +80,7 @@ Select the code, or place cursor in the document, and execute commands in one of
 
 * Edit Menu: **Edit &gt; CSS Format**.
 
-* Command Panel: Open command panel: `Ctrl+Shift+P` (Linux/Windows) or `Cmd+Shift+P` (OS X) and select **CSS Format: XXX**.
+* Command Panel: Open command panel: `Ctrl+Shift+P` (Linux/Windows) or `Cmd+Shift+P` (OS X) and select **Format CSS: XXX**.
 
 
 Shortcuts
