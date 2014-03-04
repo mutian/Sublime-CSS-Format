@@ -29,35 +29,43 @@ def format_code(code, action='compact'):
 		code = re.sub(r'\s*!important', ' !important', code)			# add space before !important
 
 	code = actFuns[action](code)
-	code = re.sub(r'(@import[^;]+;)\s*', r'\1\n', code)				# add \n after @import
-	code = re.sub(r'^\s*(\S+(\s+\S+)*)\s*$', r'\1', code)			# trim
+	code = re.sub(r'^\s*(\S+(\s+\S+)*)\s*$', r'\1', code)				# trim
 	return code
 
 def expand_rules(code):
-	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)					# add space before { , and add \n after {
-	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)				# add \n after ;
-	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)		# fix comment after ;
-	code = re.sub(r'([^\}])\s*\}', r'\1\n}', code)					# add \n before }
-	code = re.sub(r'\}', r'}\n', code)								# add \n after }
-	code = indent_rules(code)										# add \t indent
+	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)						# add space before { , and add \n after {
+
+	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)					# add \n after ;
+	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)			# fix comment after ;
+	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
+
+	code = re.sub(r'([^\}])\s*\}', r'\1\n}', code)						# add \n before }
+	code = re.sub(r'\}', r'}\n', code)									# add \n after }
+
+	code = indent_rules(code)											# add \t indent
 	return code
 
 def compact_rules(code):
-	code = re.sub(r'(\S)\{(\S)', r'\1 { \2', code)					# add space and after {
+	code = re.sub(r'(\S)\{(\S)', r'\1 { \2', code)						# add space and after {
 	code = re.sub(r'((@media|@[\w-]*keyframes)[^\{]+\{)\s*', r'\1\n', code)	# add \n after @media {
-	code = re.sub(r'(\S);([^\}])', r'\1; \2', code)					# add space after ;
-	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)		# fix comment after ;
-	code = re.sub(r'(\/\*[^\n]*\*\/)\s+\}', r'\1}', code)			# remove \n between comment and }
-	code = re.sub(r'(\S)\}', r'\1 }', code)							# add space before }
-	code = re.sub(r'\}\s*', r'}\n', code)							# add \n after }
-	code = re.sub(r';\s*([^\};]+?\{)', r';\n\1', code)				# add \n before included selector
-	code = indent_rules(code)										# add \t indent
+
+	code = re.sub(r'(\S);([^\}])', r'\1; \2', code)						# add space after ;
+	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)			# fix comment after ;
+	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
+	code = re.sub(r';\s*([^\};]+?\{)', r';\n\1', code)					# add \n before included selector
+
+	code = re.sub(r'(\/\*[^\n]*\*\/)\s+\}', r'\1}', code)				# remove \n between comment and }
+	code = re.sub(r'(\S)\}', r'\1 }', code)								# add space before }
+	code = re.sub(r'\}\s*', r'}\n', code)								# add \n after }
+
+	code = indent_rules(code)											# add \t indent
 	return code
 
 def compress_rules(code):
 	code = re.sub(r'\/\*[\s\S]+?\*\/', '', code)		# remove non-empty comments, /**/ maybe a hack
 	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)	# remove \s before and after characters {}:;, again
 	code = re.sub(r'\s*(!important)', r'\1', code)		# remove space before !important
+	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
 	return code
 
 def comma_rules(code):
