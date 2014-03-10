@@ -1,0 +1,5 @@
+CSS Format 1.0.2 Changelog:
+
+Fixed
+ - Wrap after @charset.
+ - Fix space after ; which in data url.
