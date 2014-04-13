@@ -90,7 +90,7 @@ The easiest way to install this package is through Package Control.
 
 Clone the repository in your Sublime Text "Packages" directory:
 
-    git clone git://github.com/mutian/CSS-Format.git "CSS Format"
+    git clone git://github.com/mutian/Sublime-CSS-Format.git "CSS Format"
 
 You can find your "Packages" inside the following directories:
 
@@ -106,7 +106,7 @@ You can find your "Packages" inside the following directories:
 
 **OPTION 3 - without Git**
 
-Download the latest source zip from [Github](https://github.com/mutian/CSS-Format) and extract it into a new folder named `CSS Format` in your Sublime Text "Packages" folder.
+Download the latest source zip from [Github](https://github.com/mutian/Sublime-CSS-Format) and extract it into a new folder named `CSS Format` in your Sublime Text "Packages" folder.
 
 
 Usage
