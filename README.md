@@ -9,29 +9,67 @@ CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS
 
 **Example:**
 
-* Expanded format:
+* Expanded:
 
         body {
-            background-color: #fff;
-            color: #333;
-            font-size: 12px;
+            background: #fff;
+            font: 12px/2em Arial, Helvetica, sans-serif;
         }
         a {
-            color: #06f;
+            color: rgba(65, 131, 196, 0.8);
         }
-        a:hover {
-            color: #09c;
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
         }
 
-* Compact format:
+* Expanded (Break Selectors):
 
-        body { background-color: #fff; color: #333; font-size: 12px; }
-        a { color: #06f; }
-        a:hover { color: #09c; }
+        body {
+            background: #fff;
+            font: 12px/2em Arial, Helvetica, sans-serif;
+        }
+        a {
+            color: rgba(65, 131, 196, 0.8);
+        }
+        ol,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+* Compact:
+
+        body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
+        a { color: rgba(65, 131, 196, 0.8); }
+        ol, ul, li { margin: 0; padding: 0; }
+
+* Compact (No Spaces):
+
+        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
+        a{color:rgba(65,131,196,0.8);}
+        ol,ul,li{margin:0;padding:0;}
+
+* Compact (Break Selectors):
+
+        body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
+        a { color: rgba(65, 131, 196, 0.8); }
+        ol,
+        ul,
+        li { margin: 0; padding: 0; }
+
+* Compact (Break Selectors, No Spaces):
+
+        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
+        a{color:rgba(65,131,196,0.8);}
+        ol,
+        ul,
+        li{margin:0;padding:0;}
 
 * Compressed:
 
-        body{background-color:#fff;color:#333;font-size:12px;}a{color:#06f;}a:hover{color:#09c;}
+        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif}a{color:rgba(65,131,196,0.8)}ol,ul,li{margin:0;padding:0}
 
 
 Installation

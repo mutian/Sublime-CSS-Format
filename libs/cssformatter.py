@@ -10,67 +10,127 @@
 
 import re
 
+
 def format_code(code, action='compact'):
 	actFuns = {
-		'expand'	: expand_rules,
-		'compact'	: compact_rules,
-		'compress'	: compress_rules
+		'expand'		: expand_rules,
+		'expand-bs'		: expand_rules,			# expand (break selectors)
+		'compact'		: compact_rules,
+		'compact-bs'	: compact_rules,		# compact (break selectors)
+		'compact-ns'	: compact_ns_rules,		# compact (no spaces)
+		'compact-bs-ns'	: compact_ns_rules,		# compact (break selectors, no spaces)
+		'compress'		: compress_rules
 	}
-	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)		# remove \s before and after characters {}:;,
-	code = re.sub(r',[\d\s\.\#\+>:]*\{', '{', code)			# remove invalid selector
-	code = re.sub(r';\s*;', ';', code)						# remove superfluous ;
+
+	# Protect Urls
+	urls = re.findall(r'url\([^\)]+\)', code)
+	code = re.sub(r'url\([^\)]+\)', 'url(~)', code)
+
+	# Pre Process
+	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)	# remove \s before and after characters {}:;,
+	code = re.sub(r',[\d\s\.\#\+>:]*\{', '{', code)		# remove invalid selector
+	code = re.sub(r';\s*;', ';', code)					# remove superfluous ;
 
 	if action != 'compress':
+
+		# comment
 		code = re.sub(r'\/\*\s*([\s\S]+?)\s*\*\/', r'/* \1 */', code)	# add space before and after comment content
 		code = re.sub(r'\}\s*(\/\*[\s\S]+?\*\/)\s*', r'}\n\1\n', code)	# add \n before and after outside comment
-		code = comma_rules(code)										# add space or \n after ,
-		code = re.sub(r'([A-Za-z-]):([^;\{]+[;\}])', r'\1: \2', code)	# add space after properties' :
-		code = re.sub(r'(http[s]?:) \/\/', r'\1//', code)				# fix space after http[s]:
-		code = re.sub(r'\s*!important', ' !important', code)			# add space before !important
 
+		# selectors group
+		if re.search(r'-bs', action):
+			code = break_selectors(code)				# break after selectors' ,
+		else:
+			code = re.sub(r',(\S)', r', \1', code)		# add space after ,
+
+		# add space after :
+		if re.search(r'-ns', action):
+			code = re.sub(r', +', ',', code)			# remove space after ,
+			code = re.sub(r'\s+!important', '!important', code)				# remove space before !important
+		else:
+			code = re.sub(r'([A-Za-z-]):([^;\{]+[;\}])', r'\1: \2', code)	# add space after properties' :
+			code = re.sub(r'(http[s]?:) \/\/', r'\1//', code)				# fix space after http[s]:
+			code = re.sub(r'\s*!important', ' !important', code)			# add space before !important
+
+	# Process Action Rules
 	code = actFuns[action](code)
-	code = re.sub(r'^\s*(\S+(\s+\S+)*)\s*$', r'\1', code)				# trim
+
+	# Trim
+	code = re.sub(r'^\s*(\S+(\s+\S+)*)\s*$', r'\1', code)
+
+	# Indent
+	if action != 'compress':
+		code = indent_code(code)
+	else:
+		code = remove_last_semicolon(code)
+
+	# Backfill Urls
+	while re.search(r'url\(~\)', code):
+		code = re.sub(r'url\(~\)', urls[0], code, 1)
+		del urls[0]
+
 	return code
 
+
+# Expand Rules
 def expand_rules(code):
-	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)						# add space before { , and add \n after {
+	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)							# add space before { , and add \n after {
 
-	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)					# add \n after ;
-	code = re.sub(r'(url\([^\)]*data:[\w\/-:]+)\;\s*', r'\1; ', code)	# fix space after ; in data url
-	code = re.sub(r'(url\([^\)]*charset=[\w-]+)\;\s*', r'\1; ', code)	# fix space after ; in data url
-	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)			# fix comment after ;
-	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
+	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)						# add \n after ;
+	code = re.sub(r'(url\([^\)]*data:[\w\/-:]+)\;\s*', r'\1; ', code)		# fix space after ; in data url
+	code = re.sub(r'(url\([^\)]*charset=[\w-]+)\;\s*', r'\1; ', code)		# fix space after ; in data url
+	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)				# fix comment after ;
+	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)		# add \n after @charset & @import
 
-	code = re.sub(r'([^\}])\s*\}', r'\1\n}', code)						# add \n before }
-	code = re.sub(r'\}', r'}\n', code)									# add \n after }
+	code = re.sub(r'([^\}])\s*\}', r'\1\n}', code)							# add \n before }
+	code = re.sub(r'\}', r'}\n', code)										# add \n after }
 
-	code = indent_rules(code)											# add \t indent
 	return code
 
+
+# Compact Rules
 def compact_rules(code):
-	code = re.sub(r'(\S)\{(\S)', r'\1 { \2', code)						# add space and after {
+	code = re.sub(r'(\S)\{(\S)', r'\1 { \2', code)							# add space and after {
 	code = re.sub(r'((@media|@[\w-]*keyframes)[^\{]+\{)\s*', r'\1\n', code)	# add \n after @media {
 
-	code = re.sub(r'(\S);([^\}])', r'\1; \2', code)						# add space after ;
-	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)			# fix comment after ;
-	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
-	code = re.sub(r';\s*([^\};]+?\{)', r';\n\1', code)					# add \n before included selector
+	code = re.sub(r'(\S);([^\}])', r'\1; \2', code)							# add space after ;
+	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)				# fix comment after ;
+	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)		# add \n after @charset & @import
+	code = re.sub(r';\s*([^\};]+?\{)', r';\n\1', code)						# add \n before included selector
 
-	code = re.sub(r'(\/\*[^\n]*\*\/)\s+\}', r'\1}', code)				# remove \n between comment and }
-	code = re.sub(r'(\S)\}', r'\1 }', code)								# add space before }
-	code = re.sub(r'\}\s*', r'}\n', code)								# add \n after }
+	code = re.sub(r'(\/\*[^\n]*\*\/)\s+\}', r'\1}', code)					# remove \n between comment and }
+	code = re.sub(r'(\S)\}', r'\1 }', code)									# add space before }
+	code = re.sub(r'\}\s*', r'}\n', code)									# add \n after }
 
-	code = indent_rules(code)											# add \t indent
 	return code
 
+
+# Compact Rules (no space)
+def compact_ns_rules(code):
+	code = re.sub(r'((@media|@[\w-]*keyframes)[^\{]+\{)\s*', r'\1\n', code)	# add \n after @media {
+
+	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)				# fix comment after ;
+	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)		# add \n after @charset & @import
+	code = re.sub(r';\s*([^\};]+?\{)', r';\n\1', code)						# add \n before included selector
+
+	code = re.sub(r'(\/\*[^\n]*\*\/)\s+\}', r'\1}', code)					# remove \n between comment and }
+	code = re.sub(r'\}\s*', r'}\n', code)									# add \n after }
+
+	return code
+
+
+# Compress Rules
 def compress_rules(code):
-	code = re.sub(r'\/\*[\s\S]+?\*\/', '', code)		# remove non-empty comments, /**/ maybe a hack
-	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)	# remove \s before and after characters {}:;, again
-	code = re.sub(r'\s*(!important)', r'\1', code)		# remove space before !important
+	code = re.sub(r'\/\*[\s\S]+?\*\/', '', code)						# remove non-empty comments, /**/ maybe a hack
+	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)					# remove \s before and after characters {}:;, again
+	code = re.sub(r'\s+!important', '!important', code)					# remove space before !important
 	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
+
 	return code
 
-def comma_rules(code):
+
+# Break after Selector
+def break_selectors(code):
 	block = code.split('}')
 
 	for i in range(len(block)):
@@ -88,10 +148,14 @@ def comma_rules(code):
 				else:
 					b[j] = re.sub(r',(\S)', r',\n\1', b[j])			# add \n after selectors' ,
 		block[i] = '{'.join(b)
+
 	code = '}'.join(block)
+
 	return code
 
-def indent_rules(code):
+
+# Code Indent
+def indent_code(code):
 	lines = code.split('\n')
 	level = 0
 
@@ -101,5 +165,19 @@ def indent_rules(code):
 		thisLevel = level - increment if increment > 0 else level
 		lines[i] = re.sub(r'\s*(\S+(\s+\S+)*)\s*', r'\1', lines[i])	# trim
 		lines[i] = '\t' * thisLevel + lines[i]
+
 	code = '\n'.join(lines)
+
+	return code
+
+
+# Remove Last Semicolon
+def remove_last_semicolon(code):
+	block = code.split('}')
+
+	for i in range(len(block)):
+		block[i] = re.sub(r';$', '', block[i])
+
+	code = '}'.join(block)
+
 	return code

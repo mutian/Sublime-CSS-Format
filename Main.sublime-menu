@@ -8,9 +8,41 @@
 				"caption": "CSS Format",
 				"children":
 				[
-					{ "command": "css_format", "args": { "action": "expand" },   "caption": "Expanded"},
-					{ "command": "css_format", "args": { "action": "compact" },  "caption": "Compact"},
-					{ "command": "css_format", "args": { "action": "compress" }, "caption": "Compressed"}
+					{
+						"caption": "Expanded",
+						"command": "css_format",
+						"args": { "action": "expand"}
+					},
+					{
+						"caption": "Expanded (Break Selectors)",
+						"command": "css_format",
+						"args": { "action": "expand-bs"}
+					},
+					{
+						"caption": "Compact",
+						"command": "css_format",
+						"args": { "action": "compact" }
+					},
+					{
+						"caption": "Compact (No Spaces)",
+						"command": "css_format",
+						"args": { "action": "compact-ns" }
+					},
+					{
+						"caption": "Compact (Break Selectors)",
+						"command": "css_format",
+						"args": { "action": "compact-bs" }
+					},
+					{
+						"caption": "Compact (Break Selectors, No Spaces)",
+						"command": "css_format",
+						"args": { "action": "compact-bs-ns" }
+					},
+					{
+						"caption": "Compressed",
+						"command": "css_format",
+						"args": { "action": "compress" }
+					}
 				]
 			}
 		]

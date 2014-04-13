@@ -1,0 +1,8 @@
+CSS Format 1.0.3 Changelog:
+
+New features
+ - Add options for Expanded and Compact style.
+ - Remove the last semicolon before } when Compress CSS.
+
+Fixed bug
+ - Special characters in the URL will be processed.

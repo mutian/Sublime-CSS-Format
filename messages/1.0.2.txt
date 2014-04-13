@@ -1,5 +1,5 @@
 CSS Format 1.0.2 Changelog:
 
-Fixed
+Fixed bug
  - Wrap after @charset.
  - Fix space after ; which in data url.

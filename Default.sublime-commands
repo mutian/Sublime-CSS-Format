@@ -1,5 +1,37 @@
 [
-    { "caption": "Format CSS: Expanded",    "command": "css_format",    "args": { "action": "expand" } },
-    { "caption": "Format CSS: Compact",     "command": "css_format",    "args": { "action": "compact" } },
-    { "caption": "Format CSS: Compressed",  "command": "css_format",    "args": { "action": "compress" } }
+	{
+		"caption": "Format CSS: Expanded",
+		"command": "css_format",
+		"args": { "action": "expand"}
+	},
+	{
+		"caption": "Format CSS: Expanded (Break Selectors)",
+		"command": "css_format",
+		"args": { "action": "expand-bs"}
+	},
+	{
+		"caption": "Format CSS: Compact",
+		"command": "css_format",
+		"args": { "action": "compact" }
+	},
+	{
+		"caption": "Format CSS: Compact (No Spaces)",
+		"command": "css_format",
+		"args": { "action": "compact-ns" }
+	},
+	{
+		"caption": "Format CSS: Compact (Break Selectors)",
+		"command": "css_format",
+		"args": { "action": "compact-bs" }
+	},
+	{
+		"caption": "Format CSS: Compact (Break Selectors, No Spaces)",
+		"command": "css_format",
+		"args": { "action": "compact-bs-ns" }
+	},
+	{
+		"caption": "Format CSS: Compressed",
+		"command": "css_format",
+		"args": { "action": "compress" }
+	}
 ]

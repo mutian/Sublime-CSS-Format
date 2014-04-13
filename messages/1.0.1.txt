@@ -4,5 +4,5 @@ New features
  - Wrap after commas in selector.
  - Indent for SASS/SCSS/LESS.
 
-Fixed
+Fixed bug
  - Indent in @media and @keyframes.
