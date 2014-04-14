@@ -77,8 +77,8 @@ def expand_rules(code):
 	code = re.sub(r'(\S)\{(\S)', r'\1 {\n\2', code)							# add space before { , and add \n after {
 
 	code = re.sub(r'(\S);([^\}])', r'\1;\n\2', code)						# add \n after ;
-	code = re.sub(r'(url\([^\)]*data:[\w\/-:]+)\;\s*', r'\1; ', code)		# fix space after ; in data url
-	code = re.sub(r'(url\([^\)]*charset=[\w-]+)\;\s*', r'\1; ', code)		# fix space after ; in data url
+	# code = re.sub(r'(url\([^\)]*data:[\w\/-:]+)\;\s*', r'\1; ', code)		# fix space after ; in data url
+	# code = re.sub(r'(url\([^\)]*charset=[\w-]+)\;\s*', r'\1; ', code)		# fix space after ; in data url
 	code = re.sub(r'\;\s*(\/\*[^\n]*\*\/)\s*', r'; \1\n', code)				# fix comment after ;
 	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)		# add \n after @charset & @import
 
