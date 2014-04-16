@@ -48,7 +48,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		view = self.view
 		file_name = view.file_name()
 		syntax_path = view.settings().get('syntax')
-		css_family = ['css', 'sass', 'scss', 'less']
+		suffix_array = ['css', 'sass', 'scss', 'less', 'html', 'htm']
 		suffix = ''
 		syntax = ''
 		
@@ -56,4 +56,4 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 			suffix = os.path.splitext(file_name)[1][1:]
 		if syntax_path != None:
 			syntax = os.path.splitext(syntax_path)[0].split('/')[-1].lower()
-		return suffix in css_family or syntax in css_family
+		return suffix in suffix_array or syntax in suffix_array
