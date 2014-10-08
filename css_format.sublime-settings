@@ -1,0 +1,5 @@
+{
+    "format_on_save": 0,
+    "format_action": "expand",
+    "file_filter": "\\.(css|sass|scss|less)$"
+}

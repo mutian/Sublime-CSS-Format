@@ -1,4 +1,4 @@
-import sublime, sublime_plugin, sys, os
+import sublime, sublime_plugin, sys, os, re
 
 if sys.version_info < (3, 0):
 	# ST2, Python 2.6
@@ -57,3 +57,23 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		if syntax_path != None:
 			syntax = os.path.splitext(syntax_path)[0].split('/')[-1].lower()
 		return suffix in suffix_array or syntax in suffix_array
+
+
+class FormatOnSave(sublime_plugin.EventListener):
+
+	def on_post_save(self, view):
+		global_settings = sublime.load_settings('CSS Format.sublime-settings')
+
+		should_format = view.settings().get('format_on_save', global_settings.get('format_on_save', True))
+		if not should_format:
+			return
+
+		file_filter = view.settings().get('file_filter', global_settings.get('file_filter', '\.(css|sass|scss|less)$'))
+		if not re.search(file_filter, view.file_name()):
+			return
+
+		format_action = view.settings().get('format_action', global_settings.get('format_action', 'expand'))
+		if not format_action:
+			return
+
+		view.run_command('css_format', {'action': format_action})

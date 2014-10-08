@@ -127,6 +127,20 @@ Shortcuts
 By default CSS Format provides no keyboard shortcuts to avoid conflicts, but you can view the included `Example.sublime-keymaps` file to get an idea how to set up your own.
 
 
+Format on Save
+--------------
+
+There are a number of configuration options available to customize the behavior on save. For the latest information on what options are available, select the menu item **Preferences &gt; Package Settings &gt; CSS Format &gt; Settings - Default**.
+
+**DO NOT** edit the default settings. Your changes will be lost when CSS Format is updated. ALWAYS edit the user settings by selecting **Preferences &gt; Package Settings &gt; CSS Format &gt; Settings - User**.
+
+* format_on_save: Set to `1` to trigger format on save. By default, this is set to `0`.
+
+* format_action: Which format will be. You can refer to **Preferences &gt; Package Settings &gt; CSS Format &gt; Key Bindings – Example**. By default, this is set to `expand`.
+
+* file_filter: CSS Format matches the name of the file being saved against this regular expression to determine if a build should be triggered. By default, the setting has a value of "\\.(css|sass|scss|less)$".
+
+
 Author
 ------
 

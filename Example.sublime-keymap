@@ -1,5 +1,5 @@
 [
-	// Convert to expanded format
+	// Convert to Expanded Format
 	{
 		"keys": ["ctrl+alt+["],
 		"command": "css_format",
@@ -17,7 +17,16 @@
 		}
 	},
 
-	// Convert to compact format
+	// Convert to Expanded Format (Break Selectors)
+	{
+		"keys": ["ctrl+alt+v"],
+		"command": "css_format",
+		"args": {
+			"action": "expand-bs"
+		}
+	},
+
+	// Convert to Compact Format
 	{
 		"keys": ["ctrl+alt+]"],
 		"command": "css_format",
@@ -26,7 +35,34 @@
 		}
 	},
 
-	// Compress
+	// Convert to Compact Format (No Spaces)
+	{
+		"keys": ["ctrl+alt+n"],
+		"command": "css_format",
+		"args": {
+			"action": "compact-ns"
+		}
+	},
+
+	// Convert to Compact Format (Break Selectors)
+	{
+		"keys": ["ctrl+alt+b"],
+		"command": "css_format",
+		"args": {
+			"action": "compact-bs"
+		}
+	},
+
+	// Convert to Compact Format (Break Selectors and No Spaces)
+	{
+		"keys": ["ctrl+alt+m"],
+		"command": "css_format",
+		"args": {
+			"action": "compact-bs-ns"
+		}
+	},
+
+	// Convert to Compressed Format
 	{
 		"keys": ["ctrl+alt+\\"],
 		"command": "css_format",

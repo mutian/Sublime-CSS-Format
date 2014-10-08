@@ -61,6 +61,23 @@
 						[
 							{
 								"command": "open_file",
+								"args": {"file": "${packages}/CSS Format/README.md"},
+								"caption": "README"
+							},
+							{ "caption": "-" },
+							{
+								"command": "open_file",
+								"args": {"file": "${packages}/CSS Format/SublimeOnSaveBuild.sublime-settings"},
+								"caption": "Settings – Default"
+							},
+							{
+								"command": "open_file",
+								"args": {"file": "${packages}/User/CSS Format.sublime-settings"},
+								"caption": "Settings – User"
+							},
+							{ "caption": "-" },
+							{
+								"command": "open_file",
 								"args": {
 									"file": "${packages}/CSS Format/Example.sublime-keymap"
 								},

@@ -1,37 +1,64 @@
 [
+	// Convert to Expanded Format
 	{
 		"caption": "Format CSS: Expanded",
 		"command": "css_format",
-		"args": { "action": "expand"}
+		"args": {
+			"action": "expand"
+		}
 	},
+
+	// Convert to Expanded Format (Break Selectors)
 	{
 		"caption": "Format CSS: Expanded (Break Selectors)",
 		"command": "css_format",
-		"args": { "action": "expand-bs"}
+		"args": {
+			"action": "expand-bs"
+		}
 	},
+
+	// Convert to Compact Format
 	{
 		"caption": "Format CSS: Compact",
 		"command": "css_format",
-		"args": { "action": "compact" }
+		"args": {
+			"action": "compact"
+		}
 	},
+
+	// Convert to Compact Format (No Spaces)
 	{
 		"caption": "Format CSS: Compact (No Spaces)",
 		"command": "css_format",
-		"args": { "action": "compact-ns" }
+		"args": {
+			"action": "compact-ns"
+		}
 	},
+
+	// Convert to Compact Format (Break Selectors)
 	{
 		"caption": "Format CSS: Compact (Break Selectors)",
 		"command": "css_format",
-		"args": { "action": "compact-bs" }
+		"args": {
+			"action": "compact-bs"
+		}
 	},
+
+	// Convert to Compact Format (Break Selectors and No Spaces)
 	{
 		"caption": "Format CSS: Compact (Break Selectors, No Spaces)",
 		"command": "css_format",
-		"args": { "action": "compact-bs-ns" }
+		"args": {
+			"action": "compact-bs-ns"
+		}
 	},
+
+	// Convert to Compressed Format
 	{
 		"caption": "Format CSS: Compressed",
 		"command": "css_format",
-		"args": { "action": "compress" }
+		"args": {
+			"action": "compress"
+		}
 	}
 ]
