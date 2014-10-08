@@ -8,6 +8,15 @@
 		}
 	},
 
+	// Convert to expanded format (break selectors)
+	{
+		"keys": ["ctrl+alt+b"],
+		"command": "css_format",
+		"args": {
+			"action": "expand-bs"
+		}
+	},
+
 	// Convert to compact format
 	{
 		"keys": ["ctrl+alt+]"],
