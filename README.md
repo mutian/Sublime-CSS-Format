@@ -138,7 +138,7 @@ There are a number of configuration options available to customize the behavior 
 
 * format_on_save: Set to `1` to trigger format on save. By default, this is set to `0`.
 
-* format_on_save_action: Format action. You can refer to **Settings - Default**. By default, this is set to `expand`.
+* format_on_save_action: Format action. You can refer to **Settings - Default**. By default, this is set to `"expand"`.
 
 * format_on_save_filter: CSS Format matches the name of the file being saved against this regular expression to determine if a build should be triggered. By default, the setting has a value of `"\\.(css|sass|scss|less)$"`.
 
