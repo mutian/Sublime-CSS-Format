@@ -67,7 +67,7 @@
 							{ "caption": "-" },
 							{
 								"command": "open_file",
-								"args": {"file": "${packages}/CSS Format/SublimeOnSaveBuild.sublime-settings"},
+								"args": {"file": "${packages}/CSS Format/CSS Format.sublime-settings"},
 								"caption": "Settings – Default"
 							},
 							{
