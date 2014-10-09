@@ -7,8 +7,6 @@ else:
 	# ST3, Python 3.3
 	from .libs.cssformatter import format_code
 
-global_settings = sublime.load_settings('CSS Format.sublime-settings')
-
 
 class CssFormatCommand(sublime_plugin.TextCommand):
 
@@ -19,6 +17,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 			sublime.status_message('Waiting for loading.')
 			return False
 
+		global_settings = sublime.load_settings('CSS Format.sublime-settings')
 		indentation = view.settings().get('indentation', global_settings.get('indentation', '\t'))
 
 		selection = view.sel()[0]
@@ -66,6 +65,8 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 class FormatOnSave(sublime_plugin.EventListener):
 
 	def on_post_save(self, view):
+		global_settings = sublime.load_settings('CSS Format.sublime-settings')
+
 		should_format = view.settings().get('format_on_save', global_settings.get('format_on_save', True))
 		if not should_format:
 			return
