@@ -34,7 +34,7 @@ def format_code(code, action='compact'):
 	if action != 'compress':
 
 		# comment
-		code = re.sub(r'\/\*\s*([\s\S]+?)\s*\*\/', r'/* \1 */', code)	# add space before and after comment content
+		code = re.sub(r'(\/\*+)\s*([\s\S]+?)\s*(\*+\/)', r'\1 \2 \3', code)	# add space before and after comment content
 		code = re.sub(r'\}\s*(\/\*[\s\S]+?\*\/)\s*', r'}\n\1\n', code)	# add \n before and after outside comment
 
 		# selectors group
