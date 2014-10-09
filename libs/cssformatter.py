@@ -11,7 +11,7 @@
 import re
 
 
-def format_code(code, action='compact'):
+def format_code(code, action='compact', indentation='\t'):
 	actFuns = {
 		'expand'		: expand_rules,
 		'expand-bs'		: expand_rules,			# expand (break selectors)
@@ -60,7 +60,7 @@ def format_code(code, action='compact'):
 
 	# Indent
 	if action != 'compress':
-		code = indent_code(code)
+		code = indent_code(code, indentation)
 	else:
 		code = remove_last_semicolon(code)
 
@@ -155,7 +155,7 @@ def break_selectors(code):
 
 
 # Code Indent
-def indent_code(code):
+def indent_code(code, indentation):
 	lines = code.split('\n')
 	level = 0
 
@@ -164,7 +164,7 @@ def indent_code(code):
 		level = level + increment
 		thisLevel = level - increment if increment > 0 else level
 		lines[i] = re.sub(r'\s*(\S+(\s+\S+)*)\s*', r'\1', lines[i])	# trim
-		lines[i] = '\t' * thisLevel + lines[i]
+		lines[i] = indentation * thisLevel + lines[i]
 
 	code = '\n'.join(lines)
 

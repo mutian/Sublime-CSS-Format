@@ -1,5 +1,26 @@
 {
-    "format_on_save": 0,
-    "format_action": "expand",
-    "file_filter": "\\.(css|sass|scss|less)$"
+	// Code Indentation
+	//   "\t"   : one tab
+	//   "  "   : two spaces
+	//   "    " : four spaces
+	"indentation": "\t",
+
+	// Format on Save
+	//   0: disabled
+	//   1: enabled
+	"format_on_save": 0,	// 0, 1
+
+	// On Save Action
+	//   "expand"        : Expanded
+	//   "expand-bs"     : Expanded (Break Selectors)
+	//   "compact"       : Compact
+	//   "compact-ns"    : Compact (No Spaces)
+	//   "compact-bs"    : Compact (Break Selectors)
+	//   "compact-bs-ns" : Compact (Break Selectors, No Spaces)
+	//   "compress"      : Compressed
+	"format_on_save_action": "expand",
+
+	// On Save File Filter
+	//   Please use regular expression
+	"format_on_save_filter": "\\.(css|sass|scss|less)$"
 }

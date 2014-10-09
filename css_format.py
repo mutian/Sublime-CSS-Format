@@ -7,6 +7,8 @@ else:
 	# ST3, Python 3.3
 	from .libs.cssformatter import format_code
 
+global_settings = sublime.load_settings('CSS Format.sublime-settings')
+
 
 class CssFormatCommand(sublime_plugin.TextCommand):
 
@@ -17,13 +19,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 			sublime.status_message('Waiting for loading.')
 			return False
 
+		indentation = view.settings().get('indentation', global_settings.get('indentation', '\t'))
+
 		selection = view.sel()[0]
 		if len(selection) > 0:
-			self.format_selection(edit, action)
+			self.format_selection(edit, action, indentation)
 		else:
-			self.format_whole_file(edit, action)
+			self.format_whole_file(edit, action, indentation)
 
-	def format_selection(self, edit, action):
+	def format_selection(self, edit, action, indentation):
 		view = self.view
 		regions = []
 
@@ -33,15 +37,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 				view.line(max(sel.a, sel.b)).b   # line end of last line
 			)
 			code = view.substr(region)
-			code = format_code(code, action)
+			code = format_code(code, action, indentation)
 			#view.sel().clear()
 			view.replace(edit, region, code)
 
-	def format_whole_file(self, edit, action):
+	def format_whole_file(self, edit, action, indentation):
 		view = self.view
 		region = sublime.Region(0, view.size())
 		code = view.substr(region)
-		code = format_code(code, action)
+		code = format_code(code, action, indentation)
 		view.replace(edit, region, code)
 
 	def is_visible(self):
@@ -62,17 +66,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 class FormatOnSave(sublime_plugin.EventListener):
 
 	def on_post_save(self, view):
-		global_settings = sublime.load_settings('CSS Format.sublime-settings')
-
 		should_format = view.settings().get('format_on_save', global_settings.get('format_on_save', True))
 		if not should_format:
 			return
 
-		file_filter = view.settings().get('file_filter', global_settings.get('file_filter', '\.(css|sass|scss|less)$'))
+		file_filter = view.settings().get('format_on_save_filter', global_settings.get('format_on_save_filter', '\.(css|sass|scss|less)$'))
 		if not re.search(file_filter, view.file_name()):
 			return
 
-		format_action = view.settings().get('format_action', global_settings.get('format_action', 'expand'))
+		format_action = view.settings().get('format_on_save_action', global_settings.get('format_on_save_action', 'expand'))
 		if not format_action:
 			return
 
