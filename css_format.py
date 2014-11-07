@@ -64,7 +64,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 
 class FormatOnSave(sublime_plugin.EventListener):
 
-	def on_post_save(self, view):
+	def on_pre_save(self, view):
 		global_settings = sublime.load_settings('CSS Format.sublime-settings')
 
 		should_format = view.settings().get('format_on_save', global_settings.get('format_on_save', False))

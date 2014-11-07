@@ -22,6 +22,9 @@ def format_code(code, action='compact', indentation='\t'):
 		'compress'		: compress_rules
 	}
 
+	if action == 'compress':
+		code = re.sub(r'\/\*[\s\S]+?\*\/', '', code)	# remove non-empty comments, /**/ maybe a hack
+
 	# Protect Urls
 	urls = re.findall(r'url\([^\)]+\)', code)
 	code = re.sub(r'url\([^\)]+\)', 'url(~)', code)
@@ -58,11 +61,10 @@ def format_code(code, action='compact', indentation='\t'):
 	# Trim
 	code = re.sub(r'^\s*(\S+(\s+\S+)*)\s*$', r'\1', code)
 
-	# Indent
 	if action != 'compress':
-		code = indent_code(code, indentation)
+		code = indent_code(code, indentation)	# indent
 	else:
-		code = remove_last_semicolon(code)
+		code = re.sub(r';\}', r'}', code)		# remove last semicolon
 
 	# Backfill Urls
 	while re.search(r'url\(~\)', code):
@@ -121,7 +123,6 @@ def compact_ns_rules(code):
 
 # Compress Rules
 def compress_rules(code):
-	code = re.sub(r'\/\*[\s\S]+?\*\/', '', code)						# remove non-empty comments, /**/ maybe a hack
 	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)					# remove \s before and after characters {}:;, again
 	code = re.sub(r'\s+!important', '!important', code)					# remove space before !important
 	code = re.sub(r'((?:@charset|@import)[^;]+;)\s*', r'\1\n', code)	# add \n after @charset & @import
@@ -167,17 +168,5 @@ def indent_code(code, indentation):
 		lines[i] = indentation * thisLevel + lines[i]
 
 	code = '\n'.join(lines)
-
-	return code
-
-
-# Remove Last Semicolon
-def remove_last_semicolon(code):
-	block = code.split('}')
-
-	for i in range(len(block)):
-		block[i] = re.sub(r';$', '', block[i])
-
-	code = '}'.join(block)
 
 	return code
