@@ -1,3 +1,4 @@
+#coding=utf-8
 #
 # Convert CSS/SASS/SCSS/LESS code to Expanded, Compact or Compressed format.
 #   written by Mutian Wang <mutian.wang@gmail.com>
@@ -37,7 +38,7 @@ def format_code(code, action='compact', indentation='\t'):
 	if action != 'compress':
 
 		# comment
-		code = re.sub(r'(\/\*+)\s*([\s\S]+?)\s*(\*+\/)', r'\1 \2 \3', code)	# add space before and after comment content
+		code = re.sub(r'(\/\*+)\s*([^\*]+?)\s*(\*+\/)', r'\1 \2 \3', code)	# add space before and after comment content
 		code = re.sub(r'\}\s*(\/\*[\s\S]+?\*\/)\s*', r'}\n\1\n', code)	# add \n before and after outside comment
 
 		# selectors group
