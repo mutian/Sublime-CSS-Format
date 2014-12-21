@@ -71,7 +71,7 @@ class FormatOnSave(sublime_plugin.EventListener):
 		if not should_format:
 			return
 
-		file_filter = view.settings().get('format_on_save_filter', global_settings.get('format_on_save_filter', '\.(css|sass|scss|less)$'))
+		file_filter = view.settings().get('format_on_save_filter', global_settings.get('format_on_save_filter', '\.(css|sass|scss|less|styl)$'))
 		if not re.search(file_filter, view.file_name()):
 			return
 

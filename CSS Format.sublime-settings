@@ -22,5 +22,5 @@
 
 	// On Save File Filter
 	//   Please use regular expression
-	"format_on_save_filter": "\\.(css|sass|scss|less)$"
+	"format_on_save_filter": "\\.(css|sass|scss|less|styl)$"
 }

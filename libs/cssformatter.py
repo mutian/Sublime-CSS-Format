@@ -31,7 +31,7 @@ def format_code(code, action='compact', indentation='\t'):
 
 	# Pre Process
 	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)	# remove \s before and after characters {}:;,
-	code = re.sub(r',[\d\s\.\#\+>:]*\{', '{', code)		# remove invalid selector
+	code = re.sub(r',[\d\s\.\#\+>:]*\{', '{', code)		# remove invalid selectors without \w
 	code = re.sub(r';\s*;', ';', code)					# remove superfluous ;
 
 	if action != 'compress':
