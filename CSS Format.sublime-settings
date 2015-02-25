@@ -6,9 +6,9 @@
 	"indentation": "\t",
 
 	// Format on Save
-	//   0: disabled
-	//   1: enabled
-	"format_on_save": 0,	// 0, 1
+	//   false : disabled
+	//   true  : enabled
+	"format_on_save": false,
 
 	// On Save Action
 	//   "expand"        : Expanded

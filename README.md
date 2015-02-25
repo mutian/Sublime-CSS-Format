@@ -124,7 +124,7 @@ Select the code, or place cursor in the document, and execute commands in one of
 Shortcuts
 ---------
 
-By default CSS Format provides no keyboard shortcuts to avoid conflicts, but you can view the included `Example.sublime-keymaps` file to get an idea how to set up your own.
+By default, CSS Format provides no keyboard shortcuts to avoid conflicts, but you can read the included `Example.sublime-keymaps` file to get an idea how to set up your own.
 
 
 Configuration
@@ -136,7 +136,7 @@ There are a number of configuration options available to customize the behavior 
 
 * indentation: Format indentation, you can set it to `"  "`. By default, this is set to `"\t"`
 
-* format_on_save: Set to `1` to trigger format on save. By default, this is set to `0`.
+* format_on_save: Set to `true` to trigger format on save. By default, this is set to `false`.
 
 * format_on_save_action: Format action. You can refer to **Settings - Default**. By default, this is set to `"expand"`.
 
