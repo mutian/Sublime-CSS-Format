@@ -3,36 +3,33 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
     <title>CSS Format by mutian</title>
   </head>
 
   <body>
-    <div id="container">
+    <header>
       <div class="inner">
+        <h1>CSS Format</h1>
+        <h2>CSS / SASS / SCSS / LESS Formatter for Sublime Text</h2>
+        <a href="https://github.com/mutian/Sublime-CSS-Format" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-        <header>
-          <h1>CSS Format</h1>
-          <h2>CSS / SASS / SCSS / LESS Formatter for Sublime Text</h2>
-        </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/mutian/Sublime-CSS-Format/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/mutian/Sublime-CSS-Format/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/mutian/Sublime-CSS-Format" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
           <h2>
-<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p>CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS/SCSS/LESS code to Expanded, Compact or Compressed format. CSS Format is just only a formatter, do not supports grammar check and auto correct feature.</p>
 
@@ -115,8 +112,10 @@ li{margin:0;padding:0;}
 <pre><code>body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif}a{color:rgba(65,131,196,0.8)}ol,ul,li{margin:0;padding:0}
 </code></pre>
 </li>
-</ul><h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p><strong>OPTION 1 - with Package Control (recommended)</strong></p>
 
@@ -126,7 +125,9 @@ li{margin:0;padding:0;}
 <li><p>Install <a href="https://sublime.wbond.net/installation">Package Control</a>, follow instructions on the website.</p></li>
 <li><p>Open command panel: <code>Ctrl+Shift+P</code> (Linux/Windows) or <code>Cmd+Shift+P</code> (OS X) and select <strong>Package Control: Install Package</strong>.</p></li>
 <li><p>When packages list appears, type <code>CSS Format</code> and select it.</p></li>
-</ol><p><strong>OPTION 2 - with Git</strong></p>
+</ol>
+
+<p><strong>OPTION 2 - with Git</strong></p>
 
 <p>Clone the repository in your Sublime Text "Packages" directory:</p>
 
@@ -142,12 +143,14 @@ li{margin:0;padding:0;}
 <code>%APPDATA%/Sublime Text 2/Packages/</code></p></li>
 <li><p>Linux:
 <code>~/.Sublime Text 2/Packages/</code></p></li>
-</ul><p><strong>OPTION 3 - without Git</strong></p>
+</ul>
+
+<p><strong>OPTION 3 - without Git</strong></p>
 
 <p>Download the latest source zip from <a href="https://github.com/mutian/Sublime-CSS-Format">Github</a> and extract it into a new folder named <code>CSS Format</code> in your Sublime Text "Packages" folder.</p>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Select the code, or place cursor in the document, and execute commands in one of the following ways:</p>
 
@@ -155,13 +158,15 @@ li{margin:0;padding:0;}
 <li><p>Context Menu: <strong>CSS Format</strong>.</p></li>
 <li><p>Edit Menu: <strong>Edit &gt; CSS Format</strong>.</p></li>
 <li><p>Command Panel: Open command panel: <code>Ctrl+Shift+P</code> (Linux/Windows) or <code>Cmd+Shift+P</code> (OS X) and select <strong>Format CSS: XXX</strong>.</p></li>
-</ul><h2>
-<a name="shortcuts" class="anchor" href="#shortcuts"><span class="octicon octicon-link"></span></a>Shortcuts</h2>
-
-<p>By default CSS Format provides no keyboard shortcuts to avoid conflicts, but you can view the included <code>Example.sublime-keymaps</code> file to get an idea how to set up your own.</p>
+</ul>
 
 <h2>
-<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+<a id="shortcuts" class="anchor" href="#shortcuts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shortcuts</h2>
+
+<p>By default, CSS Format provides no keyboard shortcuts to avoid conflicts, but you can read the included <code>Example.sublime-keymaps</code> file to get an idea how to set up your own.</p>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>There are a number of configuration options available to customize the behavior on save. For the latest information on what options are available, select the menu item <strong>Preferences &gt; Package Settings &gt; CSS Format &gt; Settings - Default</strong>.</p>
 
@@ -169,28 +174,42 @@ li{margin:0;padding:0;}
 
 <ul>
 <li><p>indentation: Format indentation, you can set it to <code>"  "</code>. By default, this is set to <code>"\t"</code></p></li>
-<li><p>format_on_save: Set to <code>1</code> to trigger format on save. By default, this is set to <code>0</code>.</p></li>
+<li><p>format_on_save: Set to <code>true</code> to trigger format on save. By default, this is set to <code>false</code>.</p></li>
 <li><p>format_on_save_action: Format action. You can refer to <strong>Settings - Default</strong>. By default, this is set to <code>"expand"</code>.</p></li>
-<li><p>format_on_save_filter: CSS Format matches the name of the file being saved against this regular expression to determine if a build should be triggered. By default, the setting has a value of <code>"\\.(css|sass|scss|less)$"</code>.</p></li>
-</ul><h2>
-<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+<li><p>format_on_save_filter: CSS Format matches the name of the file being saved against this regular expression to determine if a build should be triggered. By default, the setting has a value of <code>"\\.(css|sass|scss|less|styl)$"</code>.</p></li>
+</ul>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
 
 <p>Created by <strong>Mutian</strong> (<a href="http://mutian.info/">http://mutian.info</a>).</p>
 
 <p>For more info, you can send email to me: mutian(a)me.com!</p>
 
 <h2>
-<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
+<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
 
 <p>Thanks to the <strong>RIA Team</strong> of <a href="http://weibo.com/">Weibo.com</a> .</p>
         </section>
 
-        <footer>
-          CSS Format is maintained by <a href="https://github.com/mutian">mutian</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+        <aside id="sidebar">
+          <a href="https://github.com/mutian/Sublime-CSS-Format/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/mutian/Sublime-CSS-Format/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-                  <script type="text/javascript">
+          <p class="repo-owner"><a href="https://github.com/mutian/Sublime-CSS-Format"></a> is maintained by <a href="https://github.com/mutian">mutian</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -201,7 +220,5 @@ li{margin:0;padding:0;}
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
   </body>
 </html>
