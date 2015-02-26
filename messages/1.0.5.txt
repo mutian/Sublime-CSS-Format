@@ -1,4 +1,6 @@
 CSS Format 1.0.5 Changelog:
 
 Fixed bug
- - Optimize comments format.
+ - Protect strings in properties.
+ - Optimize comments' format.
+ - Optimize commas' format.
