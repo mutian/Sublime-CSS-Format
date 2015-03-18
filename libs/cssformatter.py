@@ -3,14 +3,14 @@
 #
 # Convert CSS/SASS/SCSS/LESS code to Expanded, Compact or Compressed format.
 #
-# Usage: format_code(code, action)
+# Usage: format_css(code, action)
 # Author: Mutian Wang <mutian@me.com>
 #
 
 import re
 
 
-def format_code(code, action='compact', indentation='\t'):
+def format_css(code, action='compact', indentation='\t'):
 	actFuns = {
 		'expand'		: expand_rules,
 		'expand-bs'		: expand_rules,			# expand (break selectors)
@@ -77,7 +77,7 @@ def format_code(code, action='compact', indentation='\t'):
 	else:
 		# Fix Comments
 		code = re.sub(r'\s*!comment!\s*@', '\n\n!comment!\n@', code)
-		code = re.sub(r'\s*!comment!\s*([^\/\{\};]+?){', r'\n\n!comment!\n\1{', code)
+		code = re.sub(r'\s*!comment!\s*([^\/\{\};]+?)\{', r'\n\n!comment!\n\1{', code)
 		code = re.sub(r'\s*\n!comment!', '\n\n!comment!', code)
 
 		# Backfill Comments
@@ -106,7 +106,7 @@ def expand_rules(code):
 	code = re.sub('{', ' {\n', code)									# add space before { and add \n after {
 
 	code = re.sub(';', ';\n', code)										# add \n after ;
-	code = re.sub(r';\s*([^\{\};]+?){', r';\n\n\1{', code)				# double \n between ; and include selector
+	code = re.sub(r';\s*([^\{\};]+?)\{', r';\n\n\1{', code)				# double \n between ; and include selector
 
 	code = re.sub(r'\s*(!comment!)\s*;\s*', r' \1 ;\n', code)			# fix comment before ;
 	code = re.sub(r'(:[^:;]+;)\s*(!comment!)\s*', r'\1 \2\n', code)		# fix comment after ;

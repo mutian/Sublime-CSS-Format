@@ -2,15 +2,15 @@ import sublime, sublime_plugin, sys, os, re
 
 if sys.version_info < (3, 0):
 	# ST2, Python 2.6
-	from libs.cssformatter import format_code
+	from libs.cssformatter import format_css
 else:
 	# ST3, Python 3.3
-	from .libs.cssformatter import format_code
+	from .libs.cssformatter import format_css
 
 
 class CssFormatCommand(sublime_plugin.TextCommand):
 
-	def run(self, edit, action='compact'):
+	def run(self, edit, action='compact', detectSel=True):
 		view = self.view
 
 		if view.is_loading():
@@ -21,7 +21,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		indentation = view.settings().get('indentation', global_settings.get('indentation', '\t'))
 
 		selection = view.sel()[0]
-		if len(selection) > 0:
+		if detectSel and len(selection) > 0:
 			self.format_selection(edit, action, indentation)
 		else:
 			self.format_whole_file(edit, action, indentation)
@@ -36,7 +36,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 				view.line(max(sel.a, sel.b)).b   # line end of last line
 			)
 			code = view.substr(region)
-			code = format_code(code, action, indentation)
+			code = format_css(code, action, indentation)
 			#view.sel().clear()
 			view.replace(edit, region, code)
 
@@ -44,7 +44,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		view = self.view
 		region = sublime.Region(0, view.size())
 		code = view.substr(region)
-		code = format_code(code, action, indentation)
+		code = format_css(code, action, indentation)
 		view.replace(edit, region, code)
 
 	def is_visible(self):
@@ -79,4 +79,4 @@ class FormatOnSave(sublime_plugin.EventListener):
 		if not format_action:
 			return
 
-		view.run_command('css_format', {'action': format_action})
+		view.run_command('css_format', {'action': format_action, 'detectSel': False})
