@@ -154,4 +154,4 @@ For more info, you can send email to me: mutian(a)me.com!
 Acknowledgements
 ----------------
 
-Thanks to the **RIA Team** of [Weibo.com](http://weibo.com/) .
+For Chinese information, please visit ([http://mutian.info/tech/1508](http://mutian.info/tech/1508)).
