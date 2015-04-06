@@ -154,4 +154,4 @@ For more info, you can send email to me: mutian(a)me.com!
 Acknowledgements
 ----------------
 
-For Chinese information, please visit ([http://mutian.info/tech/1508](http://mutian.info/tech/1508)).
+For Chinese information, please visit [http://mutian.info/tech/1508](http://mutian.info/tech/1508).
