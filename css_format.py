@@ -19,14 +19,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 
 		global_settings = sublime.load_settings('CSS Format.sublime-settings')
 		indentation = view.settings().get('indentation', global_settings.get('indentation', '\t'))
+		rule_break = view.settings().get('rule_break', global_settings.get('rule_break', '\n'))
 
 		selection = view.sel()[0]
 		if detectSel and len(selection) > 0:
-			self.format_selection(edit, action, indentation)
+			self.format_selection(edit, action, indentation, rule_break)
 		else:
-			self.format_whole_file(edit, action, indentation)
+			self.format_whole_file(edit, action, indentation, rule_break)
 
-	def format_selection(self, edit, action, indentation):
+	def format_selection(self, edit, action, indentation, rule_break):
 		view = self.view
 		regions = []
 
@@ -36,15 +37,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 				view.line(max(sel.a, sel.b)).b   # line end of last line
 			)
 			code = view.substr(region)
-			code = format_css(code, action, indentation)
+			code = format_css(code, action, indentation, rule_break)
 			#view.sel().clear()
 			view.replace(edit, region, code)
 
-	def format_whole_file(self, edit, action, indentation):
+	def format_whole_file(self, edit, action, indentation, rule_break):
 		view = self.view
 		region = sublime.Region(0, view.size())
 		code = view.substr(region)
-		code = format_css(code, action, indentation)
+		code = format_css(code, action, indentation, rule_break)
 		view.replace(edit, region, code)
 
 	def is_visible(self):
