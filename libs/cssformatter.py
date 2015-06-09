@@ -75,7 +75,7 @@ def format_css(code, action='compact', indentation='\t'):
 		# Remove last semicolon
 		code = code.replace(';}', '}')
 	else:
-		# Add a blank line between each block in `expand-bs` mode
+		# Add blank line between each block in `expand-bs` mode
 		if action == 'expand-bs':
 			code = re.sub(r'\}\s*', '}\n\n', code)		# double \n after }
 
@@ -184,8 +184,24 @@ def break_selectors(code):
 				for k in range(sLen - 1):
 					s[k] = re.sub(r',\s*', ', ', s[k])		# add space after properties' ,
 
-				if re.match(r'\s*@(document|media)', sLast):
+				# For @document, @media
+				if re.search(r'\s*@(document|media)', sLast):
 					s[sLen - 1] = re.sub(r',\s*', ', ', sLast)		# add space after @media's ,
+
+				# For mixins
+				elif re.search(r'(\(|\))', sLast):
+					u = sLast.split(')')
+					for m in range(len(u)):
+						v = u[m].split('(')
+						vLen = len(v)
+						if vLen < 2:
+							continue
+						v[0] = re.sub(r',\s*', ',\n', v[0])
+						v[1] = re.sub(r',\s*', ', ', v[1])			# do not break arguments
+						u[m] = '('.join(v)
+					s[sLen - 1] = ')'.join(u)
+
+				# For selectors
 				else:
 					s[sLen - 1] = re.sub(r',\s*', ',\n', sLast)		# add \n after selectors' ,
 
