@@ -202,13 +202,13 @@ def indent_code(code, indentation='\t'):
 	outPrefix = ''
 
 	for i in range(len(lines)):
-		adjustment = lines[i].count('{') - lines[i].count('}')
-		nextLevel = level + adjustment
-		thisLevel = level if adjustment > 0 else nextLevel
-		level = nextLevel
-
-		# Trim
 		if not inComment:
+			# Quote Level Adjustment
+			validCode = re.sub(r'\/\*[\s\S]*?\*\/', '', lines[i])
+			validCode = re.sub(r'\/\*[\s\S]*', '', validCode)
+			adjustment = validCode.count('{') - validCode.count('}')
+
+			# Trim
 			m = re.match(r'^(\s+)\/\*.*', lines[i])
 			if m is not None:
 				outPrefix = m.group(1)
@@ -216,8 +216,12 @@ def indent_code(code, indentation='\t'):
 			else:
 				lines[i] = re.sub(r'^\s*(.*)\s*$', r'\1', lines[i])
 		else:
-			lines[i] = re.sub(r'^' + outPrefix + '(.*)\s*$', r'\1', lines[i])
+			# Quote Level Adjustment
+			adjustment = 0
 
+			# Trim
+			lines[i] = re.sub(r'^' + outPrefix + '(.*)\s*$', r'\1', lines[i])
+		
 		# Is next line in comment?
 		commentQuotes = re.findall(r'\/\*|\*\/', lines[i])
 		for quote in commentQuotes:
@@ -225,6 +229,11 @@ def indent_code(code, indentation='\t'):
 				inComment = False
 			elif quote == '/*':
 				inComment = True
+
+		# Quote Level Adjustment
+		nextLevel = level + adjustment
+		thisLevel = level if adjustment > 0 else nextLevel
+		level = nextLevel
 
 		# Add Indentation
 		lines[i] = indentation * thisLevel + lines[i] if lines[i] != '' else ''
