@@ -26,25 +26,25 @@ def format_css(code, action='compact', indentation='\t'):
 
 	# Comments
 	if action == 'compress':
-		# remove comments
+		# Remove comments
 		code = re.sub(r'\s*\/\*[\s\S]*?\*\/\s*', '', code)
 	else:
-		# Protect Comments
+		# Protect comments
 		commentReg = r'[ \t]*\/\*[\s\S]*?\*\/'
 		comments = re.findall(commentReg, code)
 		code = re.sub(commentReg, '!comment!', code)
 
-	# Protect Strings
+	# Protect strings
 	stringReg = r'(content\s*:|[\w-]+\s*=)\s*(([\'\"]).*?\3)\s*'
 	strings = re.findall(stringReg, code)
 	code = re.sub(stringReg, r'\1!string!', code)
 
-	# Protect Urls
+	# Protect urls
 	urlReg = r'((?:url|url-prefix|regexp)\([^\)]+\))'
 	urls = re.findall(urlReg, code)
 	code = re.sub(urlReg, '!url!', code)
 
-	# Pre Process
+	# Pre process
 	code = re.sub(r'\s*([\{\}:;,])\s*', r'\1', code)	# remove \s before and after characters {}:;,
 	code = re.sub(r'([\[\(])\s*', r'\1', code)			# remove space inner [ or (
 	code = re.sub(r'\s*([\)\]])', r'\1', code)			# remove space inner ) or ]
@@ -53,13 +53,13 @@ def format_css(code, action='compact', indentation='\t'):
 	code = re.sub(r'([;,])\1+', r'\1', code)			# remove repeated ;,
 
 	if action != 'compress':
-		# group selector
+		# Group selector
 		if re.search('-bs', action):
 			code = break_selectors(code)				# break after selectors' ,
 		else:
 			code = re.sub(r',\s*', ', ', code)			# add space after ,
 
-		# add space
+		# Add space
 		if re.search('-ns', action):
 			code = re.sub(r', +', ',', code)								# remove space after ,
 			code = re.sub(r'\s+!important', '!important', code)				# remove space before !important
@@ -67,31 +67,35 @@ def format_css(code, action='compact', indentation='\t'):
 			code = re.sub(r'([A-Za-z-]):([^;\{]+[;\}])', r'\1: \2', code)	# add space after properties' :
 			code = re.sub(r'\s*!important', ' !important', code)			# add space before !important
 
-	# Process Action Rules
+	# Process action rules
 	code = actFuns[action](code)
 
 
 	if action == 'compress':
-		# remove last semicolon
+		# Remove last semicolon
 		code = code.replace(';}', '}')
 	else:
-		# Fix Comments
+		# Add a blank line between each block in `expand-bs` mode
+		if action == 'expand-bs':
+			code = re.sub(r'\}\s*', '}\n\n', code)		# double \n after }
+
+		# Fix comments
 		code = re.sub(r'\s*!comment!\s*@', '\n\n!comment!\n@', code)
 		code = re.sub(r'\s*!comment!\s*([^\/\{\};]+?)\{', r'\n\n!comment!\n\1{', code)
 		code = re.sub(r'\s*\n!comment!', '\n\n!comment!', code)
 
-		# Backfill Comments
+		# Backfill comments
 		for i in range(len(comments)):
 			code = re.sub(r'[ \t]*!comment!', comments[i], code, 1)
 
 		# Indent
 		code = indent_code(code, indentation)
 
-	# Backfill Strings
+	# Backfill strings
 	for i in range(len(strings)):
 		code = code.replace('!string!', strings[i][1], 1)
 
-	# Backfill Urls
+	# Backfill urls
 	for i in range(len(urls)):
 		code = code.replace('!url!', urls[i], 1)
 
@@ -203,7 +207,7 @@ def indent_code(code, indentation='\t'):
 
 	for i in range(len(lines)):
 		if not inComment:
-			# Quote Level Adjustment
+			# Quote level adjustment
 			validCode = re.sub(r'\/\*[\s\S]*?\*\/', '', lines[i])
 			validCode = re.sub(r'\/\*[\s\S]*', '', validCode)
 			adjustment = validCode.count('{') - validCode.count('}')
@@ -216,7 +220,7 @@ def indent_code(code, indentation='\t'):
 			else:
 				lines[i] = re.sub(r'^\s*(.*)\s*$', r'\1', lines[i])
 		else:
-			# Quote Level Adjustment
+			# Quote level adjustment
 			adjustment = 0
 
 			# Trim
@@ -230,12 +234,12 @@ def indent_code(code, indentation='\t'):
 			elif quote == '/*':
 				inComment = True
 
-		# Quote Level Adjustment
+		# Quote level adjustment
 		nextLevel = level + adjustment
 		thisLevel = level if adjustment > 0 else nextLevel
 		level = nextLevel
 
-		# Add Indentation
+		# Add indentation
 		lines[i] = indentation * thisLevel + lines[i] if lines[i] != '' else ''
 
 	code = '\n'.join(lines)
