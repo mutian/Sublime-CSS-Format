@@ -1,0 +1,8 @@
+CSS Format 1.0.6 Changelog:
+
+Fixed bug
+ - Properties' indentation in comments.
+ - Do not break arguments.
+
+Optimize
+ - Add a blank line between each block in `expand-bs` mode

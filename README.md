@@ -15,12 +15,12 @@ CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS
             background: #fff;
             font: 12px/2em Arial, Helvetica, sans-serif;
         }
-        a {
-            color: rgba(65, 131, 196, 0.8);
-        }
         ol, ul, li {
             margin: 0;
             padding: 0;
+        }
+        a {
+            color: rgba(65, 131, 196, 0.8);
         }
 
 * Expanded (Break Selectors):
@@ -29,47 +29,49 @@ CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS
             background: #fff;
             font: 12px/2em Arial, Helvetica, sans-serif;
         }
-        a {
-            color: rgba(65, 131, 196, 0.8);
-        }
+
         ol,
         ul,
         li {
             margin: 0;
             padding: 0;
         }
+        
+        a {
+            color: rgba(65, 131, 196, 0.8);
+        }
 
 * Compact:
 
         body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
-        a { color: rgba(65, 131, 196, 0.8); }
         ol, ul, li { margin: 0; padding: 0; }
+        a { color: rgba(65, 131, 196, 0.8); }
 
 * Compact (No Spaces):
 
         body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
-        a{color:rgba(65,131,196,0.8);}
         ol,ul,li{margin:0;padding:0;}
+        a{color:rgba(65,131,196,0.8);}
 
 * Compact (Break Selectors):
 
         body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
-        a { color: rgba(65, 131, 196, 0.8); }
         ol,
         ul,
         li { margin: 0; padding: 0; }
+        a { color: rgba(65, 131, 196, 0.8); }
 
 * Compact (Break Selectors, No Spaces):
 
         body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
-        a{color:rgba(65,131,196,0.8);}
         ol,
         ul,
         li{margin:0;padding:0;}
+        a{color:rgba(65,131,196,0.8);}
 
 * Compressed:
 
-        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif}a{color:rgba(65,131,196,0.8)}ol,ul,li{margin:0;padding:0}
+        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif}ol,ul,li{margin:0;padding:0}a{color:rgba(65,131,196,0.8)}
 
 
 Installation
