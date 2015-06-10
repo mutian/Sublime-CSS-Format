@@ -51,7 +51,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		view = self.view
 		file_name = view.file_name()
 		syntax_path = view.settings().get('syntax')
-		suffix_array = ['css', 'sass', 'scss', 'less', 'styl', 'html', 'htm']
+		suffix_array = ['css', 'sass', 'scss', 'less', 'html', 'htm']
 		suffix = ''
 		syntax = ''
 		
@@ -71,7 +71,7 @@ class FormatOnSave(sublime_plugin.EventListener):
 		if not should_format:
 			return
 
-		file_filter = view.settings().get('format_on_save_filter', global_settings.get('format_on_save_filter', '\.(css|sass|scss|less|styl)$'))
+		file_filter = view.settings().get('format_on_save_filter', global_settings.get('format_on_save_filter', '\.(css|sass|scss|less)$'))
 		if not re.search(file_filter, view.file_name()):
 			return
 

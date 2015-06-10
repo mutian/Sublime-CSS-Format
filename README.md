@@ -11,67 +11,81 @@ CSS Format is a CSS formatting plugin for Sublime Text, you can convert CSS/SASS
 
 * Expanded:
 
-        body {
-            background: #fff;
-            font: 12px/2em Arial, Helvetica, sans-serif;
-        }
-        ol, ul, li {
-            margin: 0;
-            padding: 0;
-        }
-        a {
-            color: rgba(65, 131, 196, 0.8);
-        }
+    ```css
+    body {
+        background: #fff;
+        font: 12px/2em Arial, Helvetica, sans-serif;
+    }
+    ol, ul, li {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        color: rgba(65, 131, 196, 0.8);
+    }
+    ```
 
 * Expanded (Break Selectors):
 
-        body {
-            background: #fff;
-            font: 12px/2em Arial, Helvetica, sans-serif;
-        }
+    ```css
+    body {
+        background: #fff;
+        font: 12px/2em Arial, Helvetica, sans-serif;
+    }
 
-        ol,
-        ul,
-        li {
-            margin: 0;
-            padding: 0;
-        }
-        
-        a {
-            color: rgba(65, 131, 196, 0.8);
-        }
+    ol,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        color: rgba(65, 131, 196, 0.8);
+    }
+    ```
 
 * Compact:
 
-        body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
-        ol, ul, li { margin: 0; padding: 0; }
-        a { color: rgba(65, 131, 196, 0.8); }
+    ```css
+    body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
+    ol, ul, li { margin: 0; padding: 0; }
+    a { color: rgba(65, 131, 196, 0.8); }
+    ```
 
 * Compact (No Spaces):
 
-        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
-        ol,ul,li{margin:0;padding:0;}
-        a{color:rgba(65,131,196,0.8);}
+    ```css
+    body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
+    ol,ul,li{margin:0;padding:0;}
+    a{color:rgba(65,131,196,0.8);}
+    ```
 
 * Compact (Break Selectors):
 
-        body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
-        ol,
-        ul,
-        li { margin: 0; padding: 0; }
-        a { color: rgba(65, 131, 196, 0.8); }
+    ```css
+    body { background: #fff; font: 12px/2em Arial, Helvetica, sans-serif; }
+    ol,
+    ul,
+    li { margin: 0; padding: 0; }
+    a { color: rgba(65, 131, 196, 0.8); }
+    ```
 
 * Compact (Break Selectors, No Spaces):
 
-        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
-        ol,
-        ul,
-        li{margin:0;padding:0;}
-        a{color:rgba(65,131,196,0.8);}
+    ```css
+    body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif;}
+    ol,
+    ul,
+    li{margin:0;padding:0;}
+    a{color:rgba(65,131,196,0.8);}
+    ```
 
 * Compressed:
 
-        body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif}ol,ul,li{margin:0;padding:0}a{color:rgba(65,131,196,0.8)}
+    ```css
+    body{background:#fff;font:12px/2em Arial,Helvetica,sans-serif}ol,ul,li{margin:0;padding:0}a{color:rgba(65,131,196,0.8)}
+    ```
 
 
 Installation
@@ -142,7 +156,7 @@ There are a number of configuration options available to customize the behavior 
 
 * format_on_save_action: Format action. You can refer to **Settings - Default**. By default, this is set to `"expand"`.
 
-* format_on_save_filter: CSS Format matches the name of the file being saved against this regular expression to determine if a build should be triggered. By default, the setting has a value of `"\\.(css|sass|scss|less|styl)$"`.
+* format_on_save_filter: CSS Format matches the name of the file being saved against this regular expression to determine if a build should be triggered. By default, the setting has a value of `"\\.(css|sass|scss|less)$"`.
 
 
 Author
