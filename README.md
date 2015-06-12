@@ -164,7 +164,7 @@ There are a number of configuration options available to customize the behavior 
 Author
 ------
 
-Created by **Mutian** ([http://mutian.info](http://mutian.info/)).
+Created by **Mutian** ([http://mutian.wang](http://mutian.wang/)).
 
 For more info, you can send email to me: mutian(a)me.com!
 
@@ -172,4 +172,4 @@ For more info, you can send email to me: mutian(a)me.com!
 Acknowledgements
 ----------------
 
-For Chinese information, please visit [http://mutian.info/tech/1508](http://mutian.info/tech/1508).
+For Chinese information, please visit [http://mutian.wang/1508](http://mutian.wang/1508).
