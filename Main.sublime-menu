@@ -3,8 +3,11 @@
 		"id": "edit",
 		"children":
 		[
-			{ "id": "permute" },
 			{
+				"caption": "-"
+			}, 
+			{
+				"id": "css_format",
 				"caption": "CSS Format",
 				"children":
 				[
@@ -113,6 +116,5 @@
 				]
 			}
 		]
-
 	}
 ]
