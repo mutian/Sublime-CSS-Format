@@ -5,4 +5,4 @@ Fixed bug
  - Do not break arguments.
 
 Optimize
- - Add a blank line between each block in `expand-bs` mode
+ - Add a blank line between each block in `expand-bs` mode.

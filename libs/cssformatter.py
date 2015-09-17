@@ -64,7 +64,7 @@ def format_css(code, action='compact', indentation='\t'):
 			code = re.sub(r', +', ',', code)								# remove space after ,
 			code = re.sub(r'\s+!important', '!important', code)				# remove space before !important
 		else:
-			code = re.sub(r'([A-Za-z-]):([^;\{]+[;\}])', r'\1: \2', code)	# add space after properties' :
+			code = re.sub(r'([A-Za-z-](?:\+_?)?):([^;\{]+[;\}])', r'\1: \2', code)	# add space after properties' :
 			code = re.sub(r'\s*!important', ' !important', code)			# add space before !important
 
 	# Process action rules

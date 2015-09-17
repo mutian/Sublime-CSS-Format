@@ -1,0 +1,4 @@
+CSS Format 1.0.7 Changelog:
+
+Optimize
+ - Support LESS merge.
