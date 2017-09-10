@@ -154,6 +154,8 @@ There are a number of configuration options available to customize the behavior 
 
 * indentation: Format indentation, you can set it to `"  "`. By default, this is set to `"\t"`
 
+* expand_block_break: Set the line breaks after each rules block under `Expanded` format. By default, this is set to `"\n\n"`.
+
 * format_on_save: Set to `true` to trigger format on save. By default, this is set to `false`.
 
 * format_on_save_action: Format action. You can refer to **Settings - Default**. By default, this is set to `"expand"`.
