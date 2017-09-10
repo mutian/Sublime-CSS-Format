@@ -10,7 +10,7 @@
 import re
 
 
-def format_css(code, action='compact', indentation='\t'):
+def format_css(code, action='compact', indentation='\t', rule_break='\n'):
 	actFuns = {
 		'expand'		: expand_rules,
 		'expand-bs'		: expand_rules,			# expand (break selectors)
@@ -69,6 +69,7 @@ def format_css(code, action='compact', indentation='\t'):
 
 	# Process action rules
 	code = actFuns[action](code)
+	code = actFuns[action](code, rule_break)
 
 
 	if action == 'compress':
@@ -106,7 +107,7 @@ def format_css(code, action='compact', indentation='\t'):
 
 
 # Expand Rules
-def expand_rules(code):
+def expand_rules(code, rule_break):
 	code = re.sub('{', ' {\n', code)									# add space before { and add \n after {
 
 	code = re.sub(';', ';\n', code)										# add \n after ;
@@ -116,7 +117,7 @@ def expand_rules(code):
 	code = re.sub(r'(:[^:;]+;)\s*(!comment!)\s*', r'\1 \2\n', code)		# fix comment after ;
 
 	code = re.sub(r'\s*\}', '\n}', code)								# add \n before }
-	code = re.sub(r'\}\s*', '}\n', code)								# add \n after }
+	code = re.sub(r'\}\s*', '}'+rule_break, code)								# add \n after }
 
 	return code
 

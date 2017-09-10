@@ -5,6 +5,11 @@
 	//   "    " : four spaces
 	"indentation": "\t",
 
+	// Rule break (only expand)
+	//   "\n"  : One line break after each rule
+	//   "\n"  : Two line breaks after each rule
+	"rule_break": false,
+
 	// Format on Save
 	//   false : disabled
 	//   true  : enabled
