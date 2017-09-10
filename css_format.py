@@ -1,11 +1,18 @@
+#!/usr/bin/python
+# encoding: utf-8
+#
+# CSS Formatter for Sublime Text
+#
+# Author: Mutian Wang <mutian@me.com>
+
 import sublime, sublime_plugin, sys, os, re
 
 if sys.version_info < (3, 0):
 	# ST2, Python 2.6
-	from libs.cssformatter import format_css
+	from libs.cssformatter import CssFormater
 else:
 	# ST3, Python 3.3
-	from .libs.cssformatter import format_css
+	from .libs.cssformatter import CssFormater
 
 
 class CssFormatCommand(sublime_plugin.TextCommand):
@@ -17,17 +24,21 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 			sublime.status_message('Waiting for loading.')
 			return False
 
+		# load settings
 		global_settings = sublime.load_settings('CSS Format.sublime-settings')
 		indentation = view.settings().get('indentation', global_settings.get('indentation', '\t'))
-		rule_break = view.settings().get('rule_break', global_settings.get('rule_break', '\n'))
+		expand_block_break = view.settings().get('expand_block_break', global_settings.get('expand_block_break', '\n\n'))
+
+		# instantiate formatter
+		formatter = CssFormater(indentation, expand_block_break)
 
 		selection = view.sel()[0]
 		if detectSel and len(selection) > 0:
-			self.format_selection(edit, action, indentation, rule_break)
+			self.format_selection(formatter, action, edit)
 		else:
-			self.format_whole_file(edit, action, indentation, rule_break)
+			self.format_whole_file(formatter, action, edit)
 
-	def format_selection(self, edit, action, indentation, rule_break):
+	def format_selection(self, formatter, action, edit):
 		view = self.view
 		regions = []
 
@@ -37,15 +48,15 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 				view.line(max(sel.a, sel.b)).b   # line end of last line
 			)
 			code = view.substr(region)
-			code = format_css(code, action, indentation, rule_break)
+			code = formatter.run(code, action)
 			#view.sel().clear()
 			view.replace(edit, region, code)
 
-	def format_whole_file(self, edit, action, indentation, rule_break):
+	def format_whole_file(self, formatter, action, edit):
 		view = self.view
 		region = sublime.Region(0, view.size())
 		code = view.substr(region)
-		code = format_css(code, action, indentation, rule_break) + '\n'
+		code = formatter.run(code, action) + '\n'
 		view.replace(edit, region, code)
 
 	def is_visible(self):

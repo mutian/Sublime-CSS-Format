@@ -1,14 +1,14 @@
 {
 	// Code Indentation
-	//   "\t"   : one tab
-	//   "  "   : two spaces
-	//   "    " : four spaces
+	//   "\t"   : 1 tab
+	//   "  "   : 2 spaces
+	//   "    " : 4 spaces
 	"indentation": "\t",
 
-	// Rule break (only expand)
-	//   "\n"  : One line break after each rule
-	//   "\n"  : Two line breaks after each rule
-	"rule_break": false,
+	// Block Break (Expand Mode Only)
+	//   "\n"   : 1 line break after each rules block
+	//   "\n\n" : 2 line breaks after each rules block
+	"expand_block_break": "\n\n",
 
 	// Format on Save
 	//   false : disabled
