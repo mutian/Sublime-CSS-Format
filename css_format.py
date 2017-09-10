@@ -45,6 +45,7 @@ class CssFormatCommand(sublime_plugin.TextCommand):
 		region = sublime.Region(0, view.size())
 		code = view.substr(region)
 		code = format_css(code, action, indentation)
+		code = code + '\n'
 		view.replace(edit, region, code)
 
 	def is_visible(self):
