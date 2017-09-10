@@ -1,0 +1,7 @@
+CSS Format 1.0.8 Changelog:
+
+Merge pull request
+ - #34 Added "Rule Break"
+ - #51 Add newline at the end of file, resolve issue #40 and #50
+
+Add MIT LICENSE

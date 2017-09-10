@@ -20,5 +20,5 @@ By default CSS Format provides no keyboard shortcuts to avoid conflicts, but you
 Author
 ------
 
-Created by Mutian [http://mutian.info/].
+Created by Mutian [http://mutian.wang/].
 For more info, you can send email to me: mutian@me.com!
